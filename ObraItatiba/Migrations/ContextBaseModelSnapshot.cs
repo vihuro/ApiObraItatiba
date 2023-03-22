@@ -36,7 +36,7 @@ namespace ObraItatiba.Migrations
                     b.Property<DateTime>("DataHoraAlteracao")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DataHoraCadstro")
+                    b.Property<DateTime>("DataHoraCadastro")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("UsuarioAlteracaoId")
@@ -61,7 +61,7 @@ namespace ObraItatiba.Migrations
                     b.ToTable("tab_ClaimsForUser");
                 });
 
-            modelBuilder.Entity("ObraItatiba.Models.Claims.ClaimsType", b =>
+            modelBuilder.Entity("ObraItatiba.Models.Claims.ClaimsTypeModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,9 +77,6 @@ namespace ObraItatiba.Migrations
                         .HasColumnType("text");
 
                     b.Property<int>("UsuarioCadastroId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("UsuarioCadatroId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Valor")
@@ -149,7 +146,7 @@ namespace ObraItatiba.Migrations
 
             modelBuilder.Entity("ObraItatiba.Models.Claims.ClaimsForUser", b =>
                 {
-                    b.HasOne("ObraItatiba.Models.Claims.ClaimsType", "Claim")
+                    b.HasOne("ObraItatiba.Models.Claims.ClaimsTypeModel", "Claim")
                         .WithMany()
                         .HasForeignKey("ClaimId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -182,7 +179,7 @@ namespace ObraItatiba.Migrations
                     b.Navigation("UsuarioCadastro");
                 });
 
-            modelBuilder.Entity("ObraItatiba.Models.Claims.ClaimsType", b =>
+            modelBuilder.Entity("ObraItatiba.Models.Claims.ClaimsTypeModel", b =>
                 {
                     b.HasOne("ObraItatiba.Models.Usuarios.UsuarioModel", "UsuarioCadastro")
                         .WithMany()

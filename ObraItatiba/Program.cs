@@ -1,8 +1,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using ObraItatiba.Context;
+using ObraItatiba.Interface.Login;
+using ObraItatiba.Service.Claims;
+using ObraItatiba.Service.Mapping.ClaimForUser;
+using ObraItatiba.Service.Mapping.ClaimType;
 using ObraItatiba.Service.Mapping.Usuario;
+using ObraItatiba.Service.Usuario;
 using ObraItatiba.Settings;
 using System.Text;
 
@@ -19,9 +25,16 @@ builder.Services.AddEntityFrameworkNpgsql()
         //options.UseLazyLoadingProxies(true);
     });
 
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IClaimTypeService, ClaimTypeService>();
+builder.Services.AddScoped<IClaimsForUserService, ClaimsForUserService>();
+
 builder.Services.AddAutoMapper(x =>
 {
     x.AddProfile(typeof(RetornoUsuarioMapping));
+    x.AddProfile(typeof(RetornoClaimMapping));
+    x.AddProfile(typeof(ClaimsForUserMapping));
+    x.AddProfile(typeof(ClaimsForUserDtoMappgin));
 });
 
 //JWT

@@ -4,5 +4,6 @@
     {
         public int ClaimId { get; set; }
         public int UsuarioId { get; set; }
+        public int UsuarioCadastroId { get; set; }
     }
 }

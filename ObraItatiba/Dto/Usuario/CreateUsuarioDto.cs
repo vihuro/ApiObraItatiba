@@ -1,4 +1,5 @@
-﻿using ObraItatiba.Models.Claims;
+﻿using ObraItatiba.Dto.Claims.ClaimsUser;
+using ObraItatiba.Models.Claims;
 
 namespace ObraItatiba.Dto.Usuario
 {
@@ -7,6 +8,6 @@ namespace ObraItatiba.Dto.Usuario
         public string Nome { get; set; }
         public string Apelido { get; set; }
         public string Senha { get; set; }
-        public List<ClaimsForUser> Claims { get; set; }
+        public List<ClaimsCadastroUsuarioDto> Claims { get; set; }
     }
 }

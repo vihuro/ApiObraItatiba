@@ -17,6 +17,7 @@ namespace ObraItatiba.Context
         }
         public DbSet<UsuarioModel> Usuario { get; set; }
         public DbSet<Fornecedores> Fornecedores { get; set; }
-        public DbSet<ClaimsType> ClaimsType { get; set; }
+        public DbSet<ClaimsTypeModel> ClaimsType { get; set; }
+        public DbSet<ClaimsForUser> ClaimsForUser { get; set; }
     }
 }
