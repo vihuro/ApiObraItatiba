@@ -22,7 +22,7 @@ builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<ContextBase>(options =>
     {
         options.UseNpgsql(connectionString);
-        //options.UseLazyLoadingProxies(true);
+        options.UseLazyLoadingProxies(true);
     });
 
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();

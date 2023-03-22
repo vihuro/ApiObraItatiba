@@ -107,3 +107,6 @@ C:\Users\thr\source\repos\ApiObraItatiba\obraitatiba\obj\Debug\net7.0\ObraItatib
 C:\Users\thr\source\repos\ApiObraItatiba\obraitatiba\obj\Debug\net7.0\ref\ObraItatiba.dll
 C:\Users\thr\source\repos\ApiObraItatiba\ObraItatiba\bin\Debug\net7.0\Castle.Core.dll
 C:\Users\thr\source\repos\ApiObraItatiba\ObraItatiba\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Proxies.dll
+C:\Users\thr\Desktop\API\ObraItatiba\obraitatiba\bin\Debug\net7.0\BCrypt.Net-Core.dll
+C:\Users\thr\Desktop\API\ObraItatiba\obraitatiba\bin\Debug\net7.0\Castle.Core.dll
+C:\Users\thr\Desktop\API\ObraItatiba\obraitatiba\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Proxies.dll

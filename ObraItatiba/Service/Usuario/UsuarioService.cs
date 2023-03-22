@@ -44,7 +44,10 @@ namespace ObraItatiba.Service.Usuario
             };
             _context.Usuario.Add(obj);
             _context.SaveChanges();
-            InsertClaims(dto, obj.Id);
+            if(dto.Claims.Count > 0)
+            {
+                InsertClaims(dto, obj.Id);
+            }
             return BuscarPorId(obj.Id);
         }
         private void InsertClaims(CreateUsuarioDto dto, int usuarioId)
