@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ObraItatiba.Dto.Claims.ClaimsUser;
-using ObraItatiba.Dto.Usuario;
+using ObraItatiba.Dto.Claims.ListClaimsForUser;
 using ObraItatiba.Models.Claims;
 
 namespace ObraItatiba.Service.Mapping.ListClaimsForUser
@@ -12,13 +12,19 @@ namespace ObraItatiba.Service.Mapping.ListClaimsForUser
             CreateMap<ClaimsForUser, ListClaimsForUserDto>()
                 .ForMember(x => x.Valor, map => map.MapFrom(src => src.Claim.Valor))
                 .ForMember(x => x.Nome, map => map.MapFrom(src => src.Claim.Nome))
-                .ForMember(x => x.Usuarios, map => map.MapFrom(src => src.Usuarios.Select(c => new UsuarioResumidoDto
+                .ForPath(x => x.ListUsers, map => map.Ignore())
+                .AfterMap((src, dest) =>
                 {
-                    Apelido = c.Apelido,
-                    Nome = c.Nome,
-                    UsuarioId = c.Id
-                })))
-                ;
+                    var group = src.ListClaimsForUser
+                    .GroupBy(x => x.ClaimsId)
+                    .ToDictionary(x => x.Key, c => c.Select(u => new ValueListClaimsForUser
+                    {
+                        Apelido = u.Usuario.Apelido,
+                        Nome = u.Usuario.Nome,
+                        UsuarioId = u.Usuario.Id
+                    }).ToList());
+                    dest.ListUsers = group.GetValueOrDefault(src.ClaimId, new List<ValueListClaimsForUser>());
+                });
         }
     }
 }

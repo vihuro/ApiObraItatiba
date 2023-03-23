@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ObraItatiba.Migrations
 {
     /// <inheritdoc />
-    public partial class PrimeiraMigracao : Migration
+    public partial class primeiraMigracao : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,7 +35,6 @@ namespace ObraItatiba.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nome = table.Column<string>(type: "text", nullable: false),
                     Valor = table.Column<string>(type: "text", nullable: false),
-                    UsuarioCadatroId = table.Column<int>(type: "integer", nullable: false),
                     UsuarioCadastroId = table.Column<int>(type: "integer", nullable: false),
                     DataHoraCadasto = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -81,7 +80,7 @@ namespace ObraItatiba.Migrations
                     ClaimId = table.Column<int>(type: "integer", nullable: false),
                     UsuarioId = table.Column<int>(type: "integer", nullable: false),
                     UsuarioCadastroId = table.Column<int>(type: "integer", nullable: false),
-                    DataHoraCadstro = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DataHoraCadastro = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UsuarioAlteracaoId = table.Column<int>(type: "integer", nullable: false),
                     DataHoraAlteracao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -114,6 +113,32 @@ namespace ObraItatiba.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "tab_ClaimsForUserUsuario",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ClaimsId = table.Column<int>(type: "integer", nullable: false),
+                    UsuarioId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tab_ClaimsForUserUsuario", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_tab_ClaimsForUserUsuario_tab_ClaimsForUser_ClaimsId",
+                        column: x => x.ClaimsId,
+                        principalTable: "tab_ClaimsForUser",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_tab_ClaimsForUserUsuario_tab_Usuario_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "tab_Usuario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_tab_ClaimsForUser_ClaimId",
                 table: "tab_ClaimsForUser",
@@ -135,6 +160,16 @@ namespace ObraItatiba.Migrations
                 column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_tab_ClaimsForUserUsuario_ClaimsId",
+                table: "tab_ClaimsForUserUsuario",
+                column: "ClaimsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tab_ClaimsForUserUsuario_UsuarioId",
+                table: "tab_ClaimsForUserUsuario",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_tab_claimsType_UsuarioCadastroId",
                 table: "tab_claimsType",
                 column: "UsuarioCadastroId");
@@ -149,10 +184,13 @@ namespace ObraItatiba.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tab_ClaimsForUser");
+                name: "tab_ClaimsForUserUsuario");
 
             migrationBuilder.DropTable(
                 name: "tab_fornecedores");
+
+            migrationBuilder.DropTable(
+                name: "tab_ClaimsForUser");
 
             migrationBuilder.DropTable(
                 name: "tab_claimsType");

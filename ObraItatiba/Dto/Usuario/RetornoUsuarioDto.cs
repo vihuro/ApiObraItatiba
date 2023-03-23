@@ -7,6 +7,6 @@ namespace ObraItatiba.Dto.Usuario
         public int UsuarioId { get; set; }
         public string NomeUsuario { get; set; }
         public string Apelido { get; set; }
-        public List<ClaimsForUserDto> Claims {get;set;}
+        public List<ClaimsForUserDtoResumido> Claims {get;set;}
     }
 }

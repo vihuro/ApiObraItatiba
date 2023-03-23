@@ -14,14 +14,16 @@ namespace ObraItatiba.Service.Usuario
         private readonly ContextBase _context;
         private readonly IMapper _mapper;
         private readonly IClaimsForUserService _claimsForUserService;
+        private readonly ITokenService _tokenService; 
         public UsuarioService(ContextBase context,
                               IMapper mapper,
-                              IClaimsForUserService claimUserService)
+                              IClaimsForUserService claimUserService,
+                              ITokenService tokenService)
         {
             _context = context;
             _mapper = mapper;
             _claimsForUserService = claimUserService;
-
+            _tokenService = tokenService;
         }
         public RetornoUsuarioDto Insert(CreateUsuarioDto dto)
         {
@@ -55,9 +57,9 @@ namespace ObraItatiba.Service.Usuario
             var claim = new ClaimsCadastroUsuarioDto();
             foreach(var item in dto.Claims)
             {
-                claim.UsuarioCadastroId = usuarioId;
-                claim.ClaimId = usuarioId;
-                claim.UsuarioCadastroId = usuarioId;
+                claim.ClaimId = item.ClaimId;
+                claim.UsuarioId = usuarioId;
+                claim.UsuarioCadastroId = item.UsuarioCadastroId;
                 _claimsForUserService.InsertClaim(claim);
                 
             }
@@ -76,7 +78,8 @@ namespace ObraItatiba.Service.Usuario
             {
                 throw new ExceptionService("Usuário ou senha inválidos!");
             }
-            return "Usuário logado com sucesso!";
+            
+            return _tokenService.Create(_mapper.Map<UsuarioModel, RetornoUsuarioDto>(usuario));
         }
 
         public RetornoUsuarioDto ProcurarPorApelido(string apelido)
@@ -95,6 +98,7 @@ namespace ObraItatiba.Service.Usuario
         {
             var usuarios = _context.Usuario
                 .Include(c => c.Claims)
+                    .ThenInclude(x => x.Claim)
                 .ToList();
             return _mapper.Map<List<UsuarioModel>, List<RetornoUsuarioDto>>(usuarios);
         }
@@ -106,6 +110,7 @@ namespace ObraItatiba.Service.Usuario
             }
             var usuario = _context.Usuario
                 .Include(c => c.Claims)
+                    .ThenInclude(x => x.Claim)
                 .AsNoTracking()
                 .FirstOrDefault(x => x.Id == id);
             return _mapper.Map<UsuarioModel, RetornoUsuarioDto>(usuario);

@@ -93,6 +93,29 @@ namespace ObraItatiba.Migrations
                     b.ToTable("tab_claimsType");
                 });
 
+            modelBuilder.Entity("ObraItatiba.Models.Claims.ListClaimsForUserModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClaimsId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClaimsId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("tab_ClaimsForUserUsuario");
+                });
+
             modelBuilder.Entity("ObraItatiba.Models.Fornecedores.Fornecedores", b =>
                 {
                     b.Property<int>("Id")
@@ -142,15 +165,7 @@ namespace ObraItatiba.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("tab_Usuario")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
 
                     b.ToTable("tab_Usuario");
                 });
@@ -201,6 +216,25 @@ namespace ObraItatiba.Migrations
                     b.Navigation("UsuarioCadastro");
                 });
 
+            modelBuilder.Entity("ObraItatiba.Models.Claims.ListClaimsForUserModel", b =>
+                {
+                    b.HasOne("ObraItatiba.Models.Claims.ClaimsForUser", "Claims")
+                        .WithMany("ListClaimsForUser")
+                        .HasForeignKey("ClaimsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ObraItatiba.Models.Usuarios.UsuarioModel", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Claims");
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("ObraItatiba.Models.Fornecedores.Fornecedores", b =>
                 {
                     b.HasOne("ObraItatiba.Models.Usuarios.UsuarioModel", "UsuarioCadastro")
@@ -212,16 +246,9 @@ namespace ObraItatiba.Migrations
                     b.Navigation("UsuarioCadastro");
                 });
 
-            modelBuilder.Entity("ObraItatiba.Models.Usuarios.UsuarioModel", b =>
-                {
-                    b.HasOne("ObraItatiba.Models.Claims.ClaimsForUser", null)
-                        .WithMany("Usuarios")
-                        .HasForeignKey("UsuarioId");
-                });
-
             modelBuilder.Entity("ObraItatiba.Models.Claims.ClaimsForUser", b =>
                 {
-                    b.Navigation("Usuarios");
+                    b.Navigation("ListClaimsForUser");
                 });
 
             modelBuilder.Entity("ObraItatiba.Models.Usuarios.UsuarioModel", b =>

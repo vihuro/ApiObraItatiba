@@ -67,7 +67,7 @@ namespace ObraItatiba.Controllers.Usuario
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
         public async Task<ActionResult<RetornoUsuarioDto>> BuscarPorId(int id)
         {
             try

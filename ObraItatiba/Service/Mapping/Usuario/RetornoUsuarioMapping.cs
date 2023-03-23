@@ -11,9 +11,9 @@ namespace ObraItatiba.Service.Mapping.Usuario
         {
             CreateMap<UsuarioModel, RetornoUsuarioDto>()
                 .ForMember(x => x.Claims, map => map.MapFrom(src => src.Claims.Select(c => 
-                new ClaimsForUserDto
+                new ClaimsForUserDtoResumido
                 {
-                    ClaimId = c.Id,
+                    ClaimId = c.ClaimId,
                     Nome = c.Claim.Nome,
                     Valor = c.Claim.Valor
                 }

@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using ObraItatiba.Context;
 using ObraItatiba.Interface.Login;
 using ObraItatiba.Service.Claims;
+using ObraItatiba.Service.JWT;
 using ObraItatiba.Service.Mapping.ClaimForUser;
 using ObraItatiba.Service.Mapping.ClaimType;
 using ObraItatiba.Service.Mapping.ListClaimsForUser;
@@ -29,6 +30,7 @@ builder.Services.AddEntityFrameworkNpgsql()
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IClaimTypeService, ClaimTypeService>();
 builder.Services.AddScoped<IClaimsForUserService, ClaimsForUserService>();
+builder.Services.AddScoped<ITokenService, CreateToken>();
 
 builder.Services.AddAutoMapper(x =>
 {

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ObraItatiba.Context;
 using ObraItatiba.Dto.Claims.ClaimsUser;
+using ObraItatiba.Dto.Claims.ListClaimsForUser;
 using ObraItatiba.Interface.Login;
 using ObraItatiba.Models.Claims;
 using ObraItatiba.Service.ExceptionCuton;
@@ -45,15 +46,28 @@ namespace ObraItatiba.Service.Claims
 
             var item = claimsForUser.Where(x => x.Nome == claim.Nome)
                        .FirstOrDefault();
-
-            if(item == null)
+            var listClaimsForuser = new ListClaimsForUserModel()
             {
-                Insert(dto);
+                ClaimsId = claim.ClaimId,
+                UsuarioId = dto.UsuarioId
+            };
+
+            if (item == null)
+            {
+                var claimForUser = Insert(dto);
+                listClaimsForuser.ClaimsId = claimForUser.Id;
+
+                _context.ListClaimsForUser.Add(listClaimsForuser);
+                _context.SaveChanges();
             }
             else
             {
                 Update(dto, item.ClaimId);
+
             }
+
+
+
             var obj = _context.ClaimsForUser
                 .Include(u => u.Usuario)
                 .Include(u => u.UsuarioCadastro)
@@ -80,13 +94,35 @@ namespace ObraItatiba.Service.Claims
         public List<ListClaimsForUserDto> GetAllClaimsForUser()
         {
             var claims = _context.ClaimsForUser
-                .Include(u => u.Usuario)
                 .Include(c => c.Claim)
-                .Include(u => u.UsuarioCadastro)
-                .Include(u => u.UsuarioAlteracao)
+                .Include(u => u.Usuario)
+                .Include(l => l.ListClaimsForUser)
+                    .ThenInclude(u => u.Usuario)
+                        .ThenInclude(c => c.Claims)
+                .AsNoTracking()
                 .ToList();
 
-            return _mapper.Map<List<ClaimsForUser>, List<ListClaimsForUserDto>>(claims);
+
+            var result = claims
+                .GroupBy(c => c.ClaimId)
+                .Select(g => new ListClaimsForUserDto
+                {
+                    ClaimId = g.Key,
+                    Valor = g.First().Claim.Valor,
+                    Nome = g.First().Claim.Nome,
+                    ListUsers = g.SelectMany(c => c.ListClaimsForUser)
+                    .Select(l => new ValueListClaimsForUser
+                    {
+                        UsuarioId = l.UsuarioId,
+                        Nome = l.Usuario.Nome,
+                        Apelido = l.Usuario.Apelido
+                    })
+                    .ToList()
+                })
+                .ToList();
+
+            
+            return result;
         }
         private ClaimsForUserDto Insert(ClaimsCadastroUsuarioDto dto)
         {
@@ -99,8 +135,14 @@ namespace ObraItatiba.Service.Claims
                 UsuarioAlteracaoId = dto.UsuarioCadastroId,
                 DataHoraAlteracao = DateTime.UtcNow
             };
-            _context.Add(obj);
+            _context.ClaimsForUser.Add(obj);
             _context.SaveChanges();
+            obj = _context.ClaimsForUser
+                .Include(c => c.Claim)
+                .Include(c => c.Usuario)
+                .Where(x => x.Id == obj.Id)
+                .FirstOrDefault();
+
             return _mapper.Map<ClaimsForUser, ClaimsForUserDto>(obj);
         }
         private ClaimsForUserDto Update(ClaimsCadastroUsuarioDto dto, int ClaimId)
@@ -113,7 +155,19 @@ namespace ObraItatiba.Service.Claims
 
             _context.Update(obj);
             _context.SaveChanges();
+            var id = obj.ListClaimsForUser.FirstOrDefault();
+            UpdateListClaimsForUser(id.Id, id.ClaimsId);
             return _mapper.Map<ClaimsForUser, ClaimsForUserDto>(obj);
+        }
+        private void UpdateListClaimsForUser(int id, int ClaimId)
+        {
+            var obj = _context.ListClaimsForUser
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+            obj.ClaimsId = ClaimId;
+            _context.Update(obj);
+            _context.SaveChanges();
+
         }
 
     }

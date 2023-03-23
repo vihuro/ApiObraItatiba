@@ -12,16 +12,12 @@ namespace ObraItatiba.Models.Claims
         [ForeignKey("tab_claimsType")]
         public int ClaimId { get; set; }
         public virtual ClaimsTypeModel Claim { get; set; }
-        [ForeignKey("tab_Usuario")]
         public int UsuarioId { get; set; }
         public virtual UsuarioModel Usuario { get; set; }
-        [ForeignKey("tab_Usuario")]
-        public virtual List<UsuarioModel> Usuarios { get; set; }
-        [ForeignKey("tab_Usuario")]
+        public virtual List<ListClaimsForUserModel> ListClaimsForUser { get; set; }
         public int UsuarioCadastroId { get; set; }
         public virtual UsuarioModel UsuarioCadastro { get; set; }
         public DateTime DataHoraCadastro { get; set; }
-        [ForeignKey("tab_Usuario")]
         public int UsuarioAlteracaoId { get; set; }
         public virtual UsuarioModel UsuarioAlteracao { get; set; }
         public DateTime DataHoraAlteracao { get; set; }
