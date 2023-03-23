@@ -16,6 +16,8 @@ namespace ObraItatiba.Models.Claims
         public int UsuarioId { get; set; }
         public virtual UsuarioModel Usuario { get; set; }
         [ForeignKey("tab_Usuario")]
+        public virtual List<UsuarioModel> Usuarios { get; set; }
+        [ForeignKey("tab_Usuario")]
         public int UsuarioCadastroId { get; set; }
         public virtual UsuarioModel UsuarioCadastro { get; set; }
         public DateTime DataHoraCadastro { get; set; }

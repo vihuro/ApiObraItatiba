@@ -14,6 +14,14 @@ namespace ObraItatiba.Context
                         .HasMany(u => u.Claims)
                         .WithOne(c => c.Usuario)
                         .HasForeignKey(c => c.UsuarioId);
+
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ClaimsForUser>()
+                .HasMany(c => c.Usuarios)
+                .WithOne()
+                .HasForeignKey("UsuarioId");
+
+
         }
         public DbSet<UsuarioModel> Usuario { get; set; }
         public DbSet<Fornecedores> Fornecedores { get; set; }

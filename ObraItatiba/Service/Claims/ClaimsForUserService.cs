@@ -5,6 +5,7 @@ using ObraItatiba.Dto.Claims.ClaimsUser;
 using ObraItatiba.Interface.Login;
 using ObraItatiba.Models.Claims;
 using ObraItatiba.Service.ExceptionCuton;
+using System.Linq;
 using System.Security.Claims;
 
 namespace ObraItatiba.Service.Claims
@@ -76,15 +77,16 @@ namespace ObraItatiba.Service.Claims
             return _mapper.Map<List<ClaimsForUser>, List<ClaimsForUserDto>>(claimForUser);
         }
 
-        public List<ClaimsForUserDto> GetAllClaimsForUser()
+        public List<ListClaimsForUserDto> GetAllClaimsForUser()
         {
             var claims = _context.ClaimsForUser
-                .AsNoTracking()
                 .Include(u => u.Usuario)
+                .Include(c => c.Claim)
                 .Include(u => u.UsuarioCadastro)
                 .Include(u => u.UsuarioAlteracao)
                 .ToList();
-            return _mapper.Map<List<ClaimsForUser>, List<ClaimsForUserDto>>(claims);
+
+            return _mapper.Map<List<ClaimsForUser>, List<ListClaimsForUserDto>>(claims);
         }
         private ClaimsForUserDto Insert(ClaimsCadastroUsuarioDto dto)
         {

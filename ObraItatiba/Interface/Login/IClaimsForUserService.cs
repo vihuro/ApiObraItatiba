@@ -6,7 +6,7 @@ namespace ObraItatiba.Interface.Login
     {
         ClaimForUserRetorno InsertClaim(ClaimsCadastroUsuarioDto dto);
         List<ClaimsForUserDto> ListClaimsForUser(int idUsuario);
-        List<ClaimsForUserDto> GetAllClaimsForUser();
+        List<ListClaimsForUserDto> GetAllClaimsForUser();
 
 
     }

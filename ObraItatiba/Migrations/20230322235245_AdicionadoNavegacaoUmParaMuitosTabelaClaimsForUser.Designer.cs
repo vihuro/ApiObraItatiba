@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ObraItatiba.Context;
@@ -11,9 +12,11 @@ using ObraItatiba.Context;
 namespace ObraItatiba.Migrations
 {
     [DbContext(typeof(ContextBase))]
-    partial class ContextBaseModelSnapshot : ModelSnapshot
+    [Migration("20230322235245_AdicionadoNavegacaoUmParaMuitosTabelaClaimsForUser")]
+    partial class AdicionadoNavegacaoUmParaMuitosTabelaClaimsForUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,6 +137,9 @@ namespace ObraItatiba.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("ClaimsForUserId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text");
@@ -142,15 +148,9 @@ namespace ObraItatiba.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("tab_Usuario")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("ClaimsForUserId");
 
                     b.ToTable("tab_Usuario");
                 });
@@ -216,7 +216,7 @@ namespace ObraItatiba.Migrations
                 {
                     b.HasOne("ObraItatiba.Models.Claims.ClaimsForUser", null)
                         .WithMany("Usuarios")
-                        .HasForeignKey("UsuarioId");
+                        .HasForeignKey("ClaimsForUserId");
                 });
 
             modelBuilder.Entity("ObraItatiba.Models.Claims.ClaimsForUser", b =>

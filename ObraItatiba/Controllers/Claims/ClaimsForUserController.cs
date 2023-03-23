@@ -27,7 +27,7 @@ namespace ObraItatiba.Controllers.Claims
             }
         }
         [HttpGet("todos")]
-        public async Task<ActionResult<List<ClaimsForUserDto>>> GetAllClaimsForUser()
+        public async Task<ActionResult<List<ListClaimsForUserDto>>> GetAllClaimsForUser()
         {
             try
             {
@@ -39,7 +39,7 @@ namespace ObraItatiba.Controllers.Claims
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("{id}")]
+        [HttpGet("{idUsuario}")]
         public async Task<ActionResult<List<ClaimsForUserDto>>> GetClaimsForUserId(int idUsuario)
         {
             try

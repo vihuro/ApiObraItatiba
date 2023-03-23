@@ -7,6 +7,7 @@ using ObraItatiba.Interface.Login;
 using ObraItatiba.Service.Claims;
 using ObraItatiba.Service.Mapping.ClaimForUser;
 using ObraItatiba.Service.Mapping.ClaimType;
+using ObraItatiba.Service.Mapping.ListClaimsForUser;
 using ObraItatiba.Service.Mapping.Usuario;
 using ObraItatiba.Service.Usuario;
 using ObraItatiba.Settings;
@@ -35,6 +36,7 @@ builder.Services.AddAutoMapper(x =>
     x.AddProfile(typeof(RetornoClaimMapping));
     x.AddProfile(typeof(ClaimsForUserMapping));
     x.AddProfile(typeof(ClaimsForUserDtoMappgin));
+    x.AddProfile(typeof(ListClaimsForUserMapping));
 });
 
 //JWT
