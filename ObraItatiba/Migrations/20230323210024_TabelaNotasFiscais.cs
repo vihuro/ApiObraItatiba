@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ObraItatiba.Migrations
 {
     /// <inheritdoc />
-    public partial class primeiraMigracao : Migration
+    public partial class TabelaNotasFiscais : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -65,6 +65,41 @@ namespace ObraItatiba.Migrations
                     table.PrimaryKey("PK_tab_fornecedores", x => x.Id);
                     table.ForeignKey(
                         name: "FK_tab_fornecedores_tab_Usuario_UsuarioCadastroId",
+                        column: x => x.UsuarioCadastroId,
+                        principalTable: "tab_Usuario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tab_notasFicais",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    NumeroNota = table.Column<string>(type: "text", nullable: false),
+                    Fornecedor = table.Column<string>(type: "text", nullable: false),
+                    ValorTotalNota = table.Column<decimal>(type: "numeric", nullable: false),
+                    Cnpj = table.Column<string>(type: "text", nullable: false),
+                    DescricaoProdutoServico = table.Column<string>(type: "text", nullable: false),
+                    NumeroDocumento = table.Column<string>(type: "text", nullable: false),
+                    ProdutoServico = table.Column<string>(type: "text", nullable: false),
+                    UsuarioCadastroId = table.Column<int>(type: "integer", nullable: false),
+                    DataHoraCadastro = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UsuarioAlteracaoId = table.Column<int>(type: "integer", nullable: false),
+                    DataHoraAlteracao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tab_notasFicais", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_tab_notasFicais_tab_Usuario_UsuarioAlteracaoId",
+                        column: x => x.UsuarioAlteracaoId,
+                        principalTable: "tab_Usuario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_tab_notasFicais_tab_Usuario_UsuarioCadastroId",
                         column: x => x.UsuarioCadastroId,
                         principalTable: "tab_Usuario",
                         principalColumn: "Id",
@@ -178,6 +213,16 @@ namespace ObraItatiba.Migrations
                 name: "IX_tab_fornecedores_UsuarioCadastroId",
                 table: "tab_fornecedores",
                 column: "UsuarioCadastroId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tab_notasFicais_UsuarioAlteracaoId",
+                table: "tab_notasFicais",
+                column: "UsuarioAlteracaoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tab_notasFicais_UsuarioCadastroId",
+                table: "tab_notasFicais",
+                column: "UsuarioCadastroId");
         }
 
         /// <inheritdoc />
@@ -188,6 +233,9 @@ namespace ObraItatiba.Migrations
 
             migrationBuilder.DropTable(
                 name: "tab_fornecedores");
+
+            migrationBuilder.DropTable(
+                name: "tab_notasFicais");
 
             migrationBuilder.DropTable(
                 name: "tab_ClaimsForUser");

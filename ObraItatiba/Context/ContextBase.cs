@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ObraItatiba.Models.Claims;
 using ObraItatiba.Models.Fornecedores;
+using ObraItatiba.Models.Notas;
 using ObraItatiba.Models.Usuarios;
 
 namespace ObraItatiba.Context
@@ -24,5 +25,6 @@ namespace ObraItatiba.Context
         public DbSet<ClaimsTypeModel> ClaimsType { get; set; }
         public DbSet<ClaimsForUser> ClaimsForUser { get; set; }
         public DbSet<ListClaimsForUserModel> ListClaimsForUser { get; set; }
+        public DbSet<NotasModel> Notas { get; set; }
     }
 }
