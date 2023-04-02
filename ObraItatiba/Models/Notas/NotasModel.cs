@@ -16,9 +16,11 @@ namespace ObraItatiba.Models.Notas
         public string DescricaoProdutoServico { get; set; }
         public string NumeroDocumento { get; set; }
         public string ProdutoServico { get; set; }
+        [ForeignKey("tab_Usuario")]
         public int UsuarioCadastroId { get; set; }
         public virtual UsuarioModel UsuarioCadastro { get; set; }
         public DateTime DataHoraCadastro { get; set; }
+        [ForeignKey("tab_Usuario")]
         public int UsuarioAlteracaoId { get; set; }
         public virtual UsuarioModel UsuarioAlteracao { get; set; }
         public DateTime DataHoraAlteracao { get; set; }

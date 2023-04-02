@@ -1,4 +1,5 @@
 ﻿using ObraItatiba.Models.Claims;
+using ObraItatiba.Models.Fornecedores;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

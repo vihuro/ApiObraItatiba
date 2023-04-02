@@ -166,3 +166,4 @@ C:\Users\thr\Desktop\API\ApiObraItatiba\obraitatiba\obj\Debug\net7.0\refint\Obra
 C:\Users\thr\Desktop\API\ApiObraItatiba\obraitatiba\obj\Debug\net7.0\ObraItatiba.pdb
 C:\Users\thr\Desktop\API\ApiObraItatiba\obraitatiba\obj\Debug\net7.0\ObraItatiba.genruntimeconfig.cache
 C:\Users\thr\Desktop\API\ApiObraItatiba\obraitatiba\obj\Debug\net7.0\ref\ObraItatiba.dll
+C:\Users\thr\Desktop\API\ApiObraItatiba\ObraItatiba\bin\Debug\net7.0\libman.json

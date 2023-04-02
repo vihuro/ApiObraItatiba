@@ -26,5 +26,6 @@ namespace ObraItatiba.Context
         public DbSet<ClaimsForUser> ClaimsForUser { get; set; }
         public DbSet<ListClaimsForUserModel> ListClaimsForUser { get; set; }
         public DbSet<NotasModel> Notas { get; set; }
+        public DbSet<TimesModel> Time { get; set; }
     }
 }

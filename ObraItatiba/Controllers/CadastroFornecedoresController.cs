@@ -10,7 +10,7 @@ namespace ObraItatiba.Controllers
         [HttpGet]
         public ActionResult<string> SelectAll()
         {
-            return "";
+            return "aqui foi";
         }
         [HttpGet("{id}")]
         public ActionResult<string> SelectFromId(int id)
