@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ObraItatiba.Context;
@@ -11,9 +12,11 @@ using ObraItatiba.Context;
 namespace ObraItatiba.Migrations
 {
     [DbContext(typeof(ContextBase))]
-    partial class ContextBaseModelSnapshot : ModelSnapshot
+    [Migration("20230403203323_AdicionadoColunasTabelaNotas")]
+    partial class AdicionadoColunasTabelaNotas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -176,48 +179,6 @@ namespace ObraItatiba.Migrations
                     b.HasIndex("UsuarioCadastroId");
 
                     b.ToTable("tab_time");
-                });
-
-            modelBuilder.Entity("ObraItatiba.Models.Notas.DocumentosModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("DataHoraAlteracao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataHoraCadastro")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Documento")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("NotaId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("UsuarioAlteracaoId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("UsuarioCadastroId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NotaId");
-
-                    b.HasIndex("UsuarioAlteracaoId");
-
-                    b.HasIndex("UsuarioCadastroId");
-
-                    b.ToTable("tab_Documentos");
                 });
 
             modelBuilder.Entity("ObraItatiba.Models.Notas.NotasModel", b =>
@@ -399,33 +360,6 @@ namespace ObraItatiba.Migrations
                         .HasForeignKey("UsuarioCadastroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("UsuarioAlteracao");
-
-                    b.Navigation("UsuarioCadastro");
-                });
-
-            modelBuilder.Entity("ObraItatiba.Models.Notas.DocumentosModel", b =>
-                {
-                    b.HasOne("ObraItatiba.Models.Notas.NotasModel", "Nota")
-                        .WithMany()
-                        .HasForeignKey("NotaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ObraItatiba.Models.Usuarios.UsuarioModel", "UsuarioAlteracao")
-                        .WithMany()
-                        .HasForeignKey("UsuarioAlteracaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ObraItatiba.Models.Usuarios.UsuarioModel", "UsuarioCadastro")
-                        .WithMany()
-                        .HasForeignKey("UsuarioCadastroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Nota");
 
                     b.Navigation("UsuarioAlteracao");
 

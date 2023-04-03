@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ObraItatiba.Dto.Notas;
+using ObraItatiba.Dto.Notas.Radar;
 using ObraItatiba.Interface.NotasRadar;
 using System.Text;
 

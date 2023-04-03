@@ -1,4 +1,4 @@
-﻿using ObraItatiba.Dto.Notas;
+﻿using ObraItatiba.Dto.Notas.Radar;
 
 namespace ObraItatiba.Interface.NotasRadar
 {

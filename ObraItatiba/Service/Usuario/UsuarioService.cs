@@ -91,7 +91,7 @@ namespace ObraItatiba.Service.Usuario
             var usuario = _context.Usuario
                                 .Include(c => c.Claims)
                                 .AsNoTracking()
-                                .FirstOrDefault(x => x.Apelido == apelido);
+                                .FirstOrDefault(x => x.Apelido.ToLower() == apelido.ToLower());
             return _mapper.Map<UsuarioModel, RetornoUsuarioDto>(usuario);
         }
         public List<RetornoUsuarioDto> BuscarTodos()

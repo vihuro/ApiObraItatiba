@@ -1,7 +1,7 @@
-﻿using ObraItatiba.Dto.Notas;
-using ObraItatiba.Migrations;
+﻿using ObraItatiba.Migrations;
 using System.Text;
 using ObraItatiba.Interface.NotasRadar;
+using ObraItatiba.Dto.Notas.Radar;
 
 namespace ObraItatiba.Service.NotasFiscais
 {

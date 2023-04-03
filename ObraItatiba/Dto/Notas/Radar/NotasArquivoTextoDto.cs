@@ -1,6 +1,6 @@
 ﻿using ObraItatiba.Models.Usuarios;
 
-namespace ObraItatiba.Dto.Notas
+namespace ObraItatiba.Dto.Notas.Radar
 {
     public class NotasArquivoTextoDto
     {
