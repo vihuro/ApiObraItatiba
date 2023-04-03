@@ -36,8 +36,11 @@ namespace ObraItatiba.Controllers.Usuario
             }
             catch (Exception ex)
             {
-
-                throw new ExceptionService(ex.Message);
+                if(ex.HResult == 404)
+                {
+                    return NotFound(ex.Message);
+                }
+                return BadRequest(ex.Message);
             }
         }
 
