@@ -27,11 +27,37 @@ namespace ObraItatiba.Controllers.Notas
             }
         }
         [HttpGet("{numeroNota}")]
-        public async Task<ActionResult<RetornoNotaThrDto>> GetNotNumeroNota(string numeroNota)
+        public async Task<ActionResult<RetornoNotaThrDto>> GetNotNumeroNota(int numeroNota)
         {
             try
             {
                 return Ok(_service.GetNotaNumeroNota(numeroNota));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult<RetornoNotaThrDto>> GetAll()
+        {
+            try
+            {
+                return Ok(_service.GetAll());
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpDelete]
+        public async Task<ActionResult<string>> DeleteAll()
+        {
+            try
+            {
+                return Ok(_service.DeleteAll());
             }
             catch (Exception ex)
             {

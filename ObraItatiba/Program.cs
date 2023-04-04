@@ -41,6 +41,7 @@ builder.Services.AddScoped<ITokenService, CreateToken>();
 builder.Services.AddScoped<ITimeService, TimeService>();
 builder.Services.AddScoped<INotasRadarService, NotasFiscaisTxt>();
 builder.Services.AddScoped<INotasThrService, NotasThrService>();
+builder.Services.AddScoped<IparcelasService, ParcelasService>();
 
 
 builder.Services.AddAutoMapper(x =>
@@ -52,6 +53,7 @@ builder.Services.AddAutoMapper(x =>
     x.AddProfile(typeof(ListClaimsForUserMapping));
     x.AddProfile(typeof(RetornoTimeMapping));
     x.AddProfile(typeof(RetornoNotaThrMapping));
+    x.AddProfile(typeof(NumeroDocumentoMapping));
 });
 
 //JWT

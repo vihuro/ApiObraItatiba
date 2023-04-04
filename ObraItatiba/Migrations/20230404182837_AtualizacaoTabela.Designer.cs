@@ -12,8 +12,8 @@ using ObraItatiba.Context;
 namespace ObraItatiba.Migrations
 {
     [DbContext(typeof(ContextBase))]
-    [Migration("20230323210152_atualizacao")]
-    partial class atualizacao
+    [Migration("20230404182837_AtualizacaoTabela")]
+    partial class AtualizacaoTabela
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -148,6 +148,81 @@ namespace ObraItatiba.Migrations
                     b.ToTable("tab_fornecedores");
                 });
 
+            modelBuilder.Entity("ObraItatiba.Models.Fornecedores.TimesModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataHoraAlteracao")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("DataHoraCadastro")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Time")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("UsuarioAlteracaoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UsuarioCadastroId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioAlteracaoId");
+
+                    b.HasIndex("UsuarioCadastroId");
+
+                    b.ToTable("tab_time");
+                });
+
+            modelBuilder.Entity("ObraItatiba.Models.Notas.DocumentosModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataHoraAlteracao")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("DataHoraCadastro")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Documento")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("NotaId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("UsuarioAlteracaoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UsuarioCadastroId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NotaId");
+
+                    b.HasIndex("UsuarioAlteracaoId");
+
+                    b.HasIndex("UsuarioCadastroId");
+
+                    b.ToTable("tab_Documentos");
+                });
+
             modelBuilder.Entity("ObraItatiba.Models.Notas.NotasModel", b =>
                 {
                     b.Property<int>("Id")
@@ -155,6 +230,13 @@ namespace ObraItatiba.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Autorizador")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("AvulsoFinalidade")
+                        .HasColumnType("text");
 
                     b.Property<string>("Cnpj")
                         .IsRequired()
@@ -174,17 +256,15 @@ namespace ObraItatiba.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("NumeroDocumento")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NumeroNota")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("NumeroNota")
+                        .HasColumnType("integer");
 
                     b.Property<string>("ProdutoServico")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("TimeId")
+                        .HasColumnType("integer");
 
                     b.Property<int>("UsuarioAlteracaoId")
                         .HasColumnType("integer");
@@ -196,6 +276,8 @@ namespace ObraItatiba.Migrations
                         .HasColumnType("numeric");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TimeId");
 
                     b.HasIndex("UsuarioAlteracaoId");
 
@@ -305,7 +387,7 @@ namespace ObraItatiba.Migrations
                     b.Navigation("UsuarioCadastro");
                 });
 
-            modelBuilder.Entity("ObraItatiba.Models.Notas.NotasModel", b =>
+            modelBuilder.Entity("ObraItatiba.Models.Fornecedores.TimesModel", b =>
                 {
                     b.HasOne("ObraItatiba.Models.Usuarios.UsuarioModel", "UsuarioAlteracao")
                         .WithMany()
@@ -324,9 +406,68 @@ namespace ObraItatiba.Migrations
                     b.Navigation("UsuarioCadastro");
                 });
 
+            modelBuilder.Entity("ObraItatiba.Models.Notas.DocumentosModel", b =>
+                {
+                    b.HasOne("ObraItatiba.Models.Notas.NotasModel", "Nota")
+                        .WithMany("Documentos")
+                        .HasForeignKey("NotaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ObraItatiba.Models.Usuarios.UsuarioModel", "UsuarioAlteracao")
+                        .WithMany()
+                        .HasForeignKey("UsuarioAlteracaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ObraItatiba.Models.Usuarios.UsuarioModel", "UsuarioCadastro")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCadastroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Nota");
+
+                    b.Navigation("UsuarioAlteracao");
+
+                    b.Navigation("UsuarioCadastro");
+                });
+
+            modelBuilder.Entity("ObraItatiba.Models.Notas.NotasModel", b =>
+                {
+                    b.HasOne("ObraItatiba.Models.Fornecedores.TimesModel", "Time")
+                        .WithMany()
+                        .HasForeignKey("TimeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ObraItatiba.Models.Usuarios.UsuarioModel", "UsuarioAlteracao")
+                        .WithMany()
+                        .HasForeignKey("UsuarioAlteracaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ObraItatiba.Models.Usuarios.UsuarioModel", "UsuarioCadastro")
+                        .WithMany()
+                        .HasForeignKey("UsuarioCadastroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Time");
+
+                    b.Navigation("UsuarioAlteracao");
+
+                    b.Navigation("UsuarioCadastro");
+                });
+
             modelBuilder.Entity("ObraItatiba.Models.Claims.ClaimsForUser", b =>
                 {
                     b.Navigation("ListClaimsForUser");
+                });
+
+            modelBuilder.Entity("ObraItatiba.Models.Notas.NotasModel", b =>
+                {
+                    b.Navigation("Documentos");
                 });
 
             modelBuilder.Entity("ObraItatiba.Models.Usuarios.UsuarioModel", b =>

@@ -253,9 +253,8 @@ namespace ObraItatiba.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("NumeroNota")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("NumeroNota")
+                        .HasColumnType("integer");
 
                     b.Property<string>("ProdutoServico")
                         .IsRequired()

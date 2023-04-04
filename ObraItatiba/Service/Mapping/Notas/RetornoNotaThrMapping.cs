@@ -23,6 +23,7 @@ namespace ObraItatiba.Service.Mapping.Notas
                 .ForPath(x => x.UsuarioAlteracao.Nome, map => map.MapFrom(src => src.UsuarioAlteracao.Nome))
                 .ForMember(x => x.ValorTotalNota, map => map.MapFrom(src => src.ValorTotalNota))
                 .ForPath(x => x.Time, map => map.MapFrom(src => src.Time.Time))
+                .ForMember(x => x.Parcelas, map => map.MapFrom(src => src.Documentos.Select(d => new ParcelasResumidasDto { Parcela = d.Documento})))
                 ;
         }
     }
