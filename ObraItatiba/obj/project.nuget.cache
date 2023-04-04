@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aeXVCnw2YWgwdmCmGtTNZT7aMQeeYYvIYBi6Ji8X+8ZoHbEg1iQu/up+0RkKC2+S8nu3BtXY9Ch6SqEJcILILQ==",
+  "dgSpecHash": "U/Eq2XyOLzJuwmX0aB0K1WS8oD1KvN9LiTVzxGjmZnIPY497CkdX/SGK4joBDkCpBH0w3jm6gB5E19taSYG6UQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\thr\\source\\repos\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj",
+  "projectFilePath": "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thr\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\thr\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
@@ -51,12 +51,5 @@
     "C:\\Users\\thr\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\thr\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema ao ler o arquivo de cache C:\\Users\\thr\\source\\repos\\ApiObraItatiba\\ObraItatiba\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
