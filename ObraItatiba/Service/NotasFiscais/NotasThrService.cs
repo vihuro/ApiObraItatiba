@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using ObraItatiba.Context;
+using ObraItatiba.Dto.Notas.Documentos;
 using ObraItatiba.Dto.Notas.Thr;
 using ObraItatiba.Interface.NotasTHR;
 using ObraItatiba.Models.Notas;
@@ -12,16 +13,19 @@ namespace ObraItatiba.Service.NotasFiscais
     {
         private readonly ContextBase _context;
         private readonly IMapper _mapper;
+        private readonly IparcelasService _parcelasService;
         public NotasThrService(ContextBase context,
-                                IMapper mapper) 
+                                IMapper mapper,
+                                IparcelasService parcelaService) 
         {  
             _context = context; 
             _mapper = mapper;
+            _parcelasService = parcelaService;
         }
         public RetornoNotaThrDto Insert(InsertNotaDto dto)
         {
             if(string.IsNullOrEmpty(dto.Cnpj) || 
-                string.IsNullOrEmpty(dto.NumeroNota) ||
+                string.IsNullOrEmpty(dto.NumeroNota.ToString()) ||
                 string.IsNullOrEmpty(dto.Autorizador) || 
                 string.IsNullOrEmpty(dto.ValorTotalNota.ToString()) ||
                 string.IsNullOrEmpty(dto.DescricaoProdutoServico) || 
@@ -52,18 +56,28 @@ namespace ObraItatiba.Service.NotasFiscais
             };
             _context.Notas.Add(model);
             _context.SaveChanges();
+            if(dto.Parcelas.Count > 0)
+            {
+                foreach(var item in dto.Parcelas)
+                {
+                    var parcela = new InserirDocumentosDto()
+                    {
+                        NumeroDocumento = item.Parcela,
+                        NumeroNotaId = model.Id,
+                        UsuarioCadastroId = model.UsuarioCadastroId
+                    };
+                    _parcelasService.Insert(parcela);
+                }
+            }
             return GetNotaId(model.Id);
 
         }
 
-        public RetornoNotaThrDto GetNotaNumeroNota (string numeroNota)
+        public RetornoNotaThrDto GetNotaNumeroNota(int numeroNota)
         {
             var obj = _context.Notas
-                .Include(u => u.UsuarioCadastro)
-                .Include(u => u.UsuarioAlteracao)
-                .Include(d => d.Documentos)
-                .Include(t => t.Time)
-                .FirstOrDefault(x => x.NumeroNota == numeroNota);
+                .Include(n => n.Documentos)
+                .FirstOrDefault(n => n.NumeroNota == numeroNota);
             return _mapper.Map<NotasModel, RetornoNotaThrDto>(obj);
         }
         public RetornoNotaThrDto GetNotaId (int id)
@@ -71,9 +85,28 @@ namespace ObraItatiba.Service.NotasFiscais
             var obj = _context.Notas
                 .Include(u => u.UsuarioCadastro)
                 .Include(u => u.UsuarioAlteracao)
-                .AsNoTracking()
                 .FirstOrDefault (x => x.Id == id);
             return _mapper.Map<NotasModel, RetornoNotaThrDto>(obj);
+        }
+
+        public List<RetornoNotaThrDto> GetAll()
+        {
+            var obj = _context.Notas
+                .Include(u => u.UsuarioCadastro)
+                .Include(u => u.UsuarioAlteracao)
+                .Include(d => d.Documentos)
+                .Include(x => x.Time)
+                .ToList();
+            return _mapper.Map<List<NotasModel>, List<RetornoNotaThrDto>>(obj);
+        }
+
+        public string DeleteAll()
+        {
+            var obj = _context.Notas
+                .ToList();
+            _context.RemoveRange(obj);
+            _context.SaveChanges();
+            return "Notas exluidas com sucesso!";
         }
     }
 }

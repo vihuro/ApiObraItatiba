@@ -5,7 +5,7 @@
 namespace ObraItatiba.Migrations
 {
     /// <inheritdoc />
-    public partial class CriadoNavegadorEmNotasModel : Migration
+    public partial class NovaAtualizacao : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

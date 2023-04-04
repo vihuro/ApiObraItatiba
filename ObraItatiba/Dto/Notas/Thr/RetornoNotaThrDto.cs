@@ -5,7 +5,7 @@ namespace ObraItatiba.Dto.Notas.Thr
     public class RetornoNotaThrDto
     {
         public int Id { get; set; }
-        public string NumeroNota { get; set; }
+        public int NumeroNota { get; set; }
         public string Fornecedor { get; set; }
         public decimal ValorTotalNota { get; set; }
         public string Cnpj { get; set; }

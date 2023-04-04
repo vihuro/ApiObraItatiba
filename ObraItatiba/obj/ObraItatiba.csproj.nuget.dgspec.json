@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj": {}
+    "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\obraitatiba\\ObraItatiba.csproj": {}
   },
   "projects": {
-    "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj": {
+    "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\obraitatiba\\ObraItatiba.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj",
+        "projectUniqueName": "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\obraitatiba\\ObraItatiba.csproj",
         "projectName": "ObraItatiba",
-        "projectPath": "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj",
+        "projectPath": "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\obraitatiba\\ObraItatiba.csproj",
         "packagesPath": "C:\\Users\\thr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\ObraItatiba\\obj\\",
+        "outputPath": "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\obraitatiba\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\thr\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -71,6 +71,10 @@
               "version": "[7.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
               "version": "[7.0.4, )"
             },

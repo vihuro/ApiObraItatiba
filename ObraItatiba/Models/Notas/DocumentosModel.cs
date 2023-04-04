@@ -16,6 +16,7 @@ namespace ObraItatiba.Models.Notas
         public int UsuarioCadastroId { get; set; }
         public virtual UsuarioModel UsuarioCadastro { get; set; }
         public DateTime DataHoraCadastro { get; set; }
+        public int UsuarioAlteracaoId { get; set; }
         public virtual UsuarioModel UsuarioAlteracao { get; set; }
         public DateTime DataHoraAlteracao { get; set; }
 

@@ -1,5 +1,4 @@
-﻿using ObraItatiba.Migrations;
-using System.Text;
+﻿using System.Text;
 using ObraItatiba.Interface.NotasRadar;
 using ObraItatiba.Dto.Notas.Radar;
 

@@ -16,6 +16,7 @@
           "Microsoft.EntityFrameworkCore": "7.0.4",
           "Microsoft.EntityFrameworkCore.Design": "7.0.4",
           "Microsoft.EntityFrameworkCore.Proxies": "7.0.4",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.4",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.4",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.IdentityModel.Tokens": "6.27.0",

@@ -2143,6 +2143,7 @@
       "Microsoft.EntityFrameworkCore >= 7.0.4",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.4",
       "Microsoft.EntityFrameworkCore.Proxies >= 7.0.4",
+      "Microsoft.EntityFrameworkCore.Relational >= 7.0.4",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.4",
       "Microsoft.Extensions.DependencyInjection >= 7.0.0",
       "Microsoft.IdentityModel.Tokens >= 6.27.0",
@@ -2156,11 +2157,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj",
+      "projectUniqueName": "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\obraitatiba\\ObraItatiba.csproj",
       "projectName": "ObraItatiba",
-      "projectPath": "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj",
+      "projectPath": "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\obraitatiba\\ObraItatiba.csproj",
       "packagesPath": "C:\\Users\\thr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\ObraItatiba\\obj\\",
+      "outputPath": "C:\\Users\\thr\\Desktop\\API\\ApiObraItatiba\\obraitatiba\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\thr\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2220,6 +2221,10 @@
             "version": "[7.0.4, )"
           },
           "Microsoft.EntityFrameworkCore.Proxies": {
+            "target": "Package",
+            "version": "[7.0.4, )"
+          },
+          "Microsoft.EntityFrameworkCore.Relational": {
             "target": "Package",
             "version": "[7.0.4, )"
           },
