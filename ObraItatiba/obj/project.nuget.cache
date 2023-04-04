@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CBNjN9/XIVYbSmq2ZBQnk9uAPopDD0Up5KL4xVcm+7OO2sJ2ZMtdA61a9jFzNgwEvkdyzA06pEQGt42tdfi3bg==",
+  "dgSpecHash": "aeXVCnw2YWgwdmCmGtTNZT7aMQeeYYvIYBi6Ji8X+8ZoHbEg1iQu/up+0RkKC2+S8nu3BtXY9Ch6SqEJcILILQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\thr\\source\\repos\\ApiObraItatiba\\obraitatiba\\ObraItatiba.csproj",
+  "projectFilePath": "C:\\Users\\thr\\source\\repos\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thr\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\thr\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
