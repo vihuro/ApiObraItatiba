@@ -2,12 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using ObraItatiba.Context;
 using ObraItatiba.Dto.Notas.Thr;
+using ObraItatiba.Interface.NotasTHR;
 using ObraItatiba.Models.Notas;
 using ObraItatiba.Service.ExceptionCuton;
 
 namespace ObraItatiba.Service.NotasFiscais
 {
-    public class NotasThrService
+    public class NotasThrService : INotasThrService
     {
         private readonly ContextBase _context;
         private readonly IMapper _mapper;
@@ -60,7 +61,8 @@ namespace ObraItatiba.Service.NotasFiscais
             var obj = _context.Notas
                 .Include(u => u.UsuarioCadastro)
                 .Include(u => u.UsuarioAlteracao)
-                .AsNoTracking()
+                .Include(d => d.Documentos)
+                .Include(t => t.Time)
                 .FirstOrDefault(x => x.NumeroNota == numeroNota);
             return _mapper.Map<NotasModel, RetornoNotaThrDto>(obj);
         }

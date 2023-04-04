@@ -7,10 +7,10 @@ namespace ObraItatiba.Controllers.Notas
 {
     [ApiController]
     [Route("api/notas/radar")]
-    public class NotasController : ControllerBase
+    public class NotasRadarController : ControllerBase
     {
         private readonly INotasRadarService _service;
-        public NotasController(INotasRadarService service)
+        public NotasRadarController(INotasRadarService service)
         {
             this._service = service;
         }
