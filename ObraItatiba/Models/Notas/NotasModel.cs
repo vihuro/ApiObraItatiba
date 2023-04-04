@@ -15,7 +15,7 @@ namespace ObraItatiba.Models.Notas
         public decimal ValorTotalNota { get; set; }
         public string Cnpj { get; set; }
         public string DescricaoProdutoServico { get; set; }
-        public string AvulsoFinalidade { get; set; }
+        public string? AvulsoFinalidade { get; set; }
         public string Autorizador { get; set; }
         public string ProdutoServico { get; set; }
         [ForeignKey("tab_Usuario")]
@@ -28,6 +28,7 @@ namespace ObraItatiba.Models.Notas
         public DateTime DataHoraAlteracao { get; set; }
         public int TimeId { get; set; }
         public virtual TimesModel Time { get; set; }
+        public virtual List<DocumentosModel> Documentos { get; set; }
         
     }
 }

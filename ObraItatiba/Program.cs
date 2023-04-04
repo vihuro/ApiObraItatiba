@@ -5,6 +5,7 @@ using ObraItatiba.Context;
 using ObraItatiba.Dto.Time;
 using ObraItatiba.Interface.Login;
 using ObraItatiba.Interface.NotasRadar;
+using ObraItatiba.Interface.NotasTHR;
 using ObraItatiba.Interface.Time;
 using ObraItatiba.Service;
 using ObraItatiba.Service.Claims;
@@ -12,6 +13,7 @@ using ObraItatiba.Service.JWT;
 using ObraItatiba.Service.Mapping.ClaimForUser;
 using ObraItatiba.Service.Mapping.ClaimType;
 using ObraItatiba.Service.Mapping.ListClaimsForUser;
+using ObraItatiba.Service.Mapping.Notas;
 using ObraItatiba.Service.Mapping.Times;
 using ObraItatiba.Service.Mapping.Usuario;
 using ObraItatiba.Service.NotasFiscais;
@@ -38,6 +40,8 @@ builder.Services.AddScoped<IClaimsForUserService, ClaimsForUserService>();
 builder.Services.AddScoped<ITokenService, CreateToken>();
 builder.Services.AddScoped<ITimeService, TimeService>();
 builder.Services.AddScoped<INotasRadarService, NotasFiscaisTxt>();
+builder.Services.AddScoped<INotasThrService, NotasThrService>();
+
 
 builder.Services.AddAutoMapper(x =>
 {
@@ -47,6 +51,7 @@ builder.Services.AddAutoMapper(x =>
     x.AddProfile(typeof(ClaimsForUserDtoMappgin));
     x.AddProfile(typeof(ListClaimsForUserMapping));
     x.AddProfile(typeof(RetornoTimeMapping));
+    x.AddProfile(typeof(RetornoNotaThrMapping));
 });
 
 //JWT

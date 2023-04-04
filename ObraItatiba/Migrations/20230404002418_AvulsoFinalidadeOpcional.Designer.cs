@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ObraItatiba.Context;
@@ -11,9 +12,11 @@ using ObraItatiba.Context;
 namespace ObraItatiba.Migrations
 {
     [DbContext(typeof(ContextBase))]
-    partial class ContextBaseModelSnapshot : ModelSnapshot
+    [Migration("20230404002418_AvulsoFinalidadeOpcional")]
+    partial class AvulsoFinalidadeOpcional
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -407,7 +410,7 @@ namespace ObraItatiba.Migrations
             modelBuilder.Entity("ObraItatiba.Models.Notas.DocumentosModel", b =>
                 {
                     b.HasOne("ObraItatiba.Models.Notas.NotasModel", "Nota")
-                        .WithMany("Documentos")
+                        .WithMany()
                         .HasForeignKey("NotaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -461,11 +464,6 @@ namespace ObraItatiba.Migrations
             modelBuilder.Entity("ObraItatiba.Models.Claims.ClaimsForUser", b =>
                 {
                     b.Navigation("ListClaimsForUser");
-                });
-
-            modelBuilder.Entity("ObraItatiba.Models.Notas.NotasModel", b =>
-                {
-                    b.Navigation("Documentos");
                 });
 
             modelBuilder.Entity("ObraItatiba.Models.Usuarios.UsuarioModel", b =>
