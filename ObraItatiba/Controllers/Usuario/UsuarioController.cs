@@ -2,6 +2,7 @@
 using ObraItatiba.Dto.Usuario;
 using ObraItatiba.Interface.Login;
 using ObraItatiba.Service.ExceptionCuton;
+using ObraItatiba.Service.JWT;
 
 namespace ObraItatiba.Controllers.Usuario
 {
@@ -45,6 +46,7 @@ namespace ObraItatiba.Controllers.Usuario
         }
 
         [HttpGet("{apelido}")]
+        [ClaimsAuthorizeAttribute("Admin","regra1,regra2,regra3")]
         public async Task<ActionResult<RetornoUsuarioDto>> ProcurarPorApelido(string apelido)
         {
             try
@@ -58,6 +60,7 @@ namespace ObraItatiba.Controllers.Usuario
             }
         }
         [HttpGet("todos")]
+        [ClaimsAuthorizeAttribute("Admin", "")]
         public async Task<ActionResult<List<RetornoUsuarioDto>>> BuscarTodos()
         {
             try
@@ -71,6 +74,7 @@ namespace ObraItatiba.Controllers.Usuario
             }
         }
         [HttpGet("id/{id}")]
+        [ClaimsAuthorizeAttribute("Admin", "")]
         public async Task<ActionResult<RetornoUsuarioDto>> BuscarPorId(int id)
         {
             try
