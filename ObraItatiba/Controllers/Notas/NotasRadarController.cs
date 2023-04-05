@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ObraItatiba.Dto.Notas.Radar;
 using ObraItatiba.Interface.NotasRadar;
+using ObraItatiba.Service.JWT;
 using System.Text;
 
 namespace ObraItatiba.Controllers.Notas
@@ -15,6 +16,7 @@ namespace ObraItatiba.Controllers.Notas
             this._service = service;
         }
         [HttpGet]
+        [ClaimsAuthorizeAttribute("Financeiro", "regra1,regra2,regra3")]
         public ActionResult<List<NotasArquivoTextoDto>> BuscarNotasArquivoTexto()
         {
             try

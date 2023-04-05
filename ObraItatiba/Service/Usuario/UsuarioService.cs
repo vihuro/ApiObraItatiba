@@ -68,7 +68,7 @@ namespace ObraItatiba.Service.Usuario
         public string Logar(LogarDto dto)
         {
             var usuario = _context.Usuario
-                .FirstOrDefault(x => x.Apelido == dto.Apelido);
+                .FirstOrDefault(x => x.Apelido.ToLower() == dto.Apelido.ToLower());
             if(usuario == null)
             {
                 throw new ExceptionService("Usuário ou senha inválidos!");

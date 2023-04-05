@@ -27,10 +27,8 @@ namespace ObraItatiba.Service.NotasFiscais
             if(string.IsNullOrEmpty(dto.Cnpj) || 
                 string.IsNullOrEmpty(dto.NumeroNota.ToString()) ||
                 string.IsNullOrEmpty(dto.Autorizador) || 
-                string.IsNullOrEmpty(dto.ValorTotalNota.ToString()) ||
-                string.IsNullOrEmpty(dto.DescricaoProdutoServico) || 
-                string.IsNullOrEmpty(dto.Fornecedor) ||
-                string.IsNullOrEmpty(dto.ProdutoServico) || 
+                string.IsNullOrEmpty(dto.ValorTotalNota.ToString())  || 
+                string.IsNullOrEmpty(dto.Fornecedor) || 
                 string.IsNullOrEmpty(dto.TimeId.ToString()) ||
                 string.IsNullOrEmpty(dto.UsuarioCadastroId.ToString()))
             {

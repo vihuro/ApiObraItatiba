@@ -10,8 +10,8 @@ namespace ObraItatiba.Service.JWT
         {
             var permissions = claimValue.Split(',');
             if(!context.User.Identity.IsAuthenticated &&
-               !context.User.Claims.Any(x => x.Type == claimName)) return false;
-            var auth = permissions.Any(x => context.User.Claims.Any(c => c.Value == x));
+               !context.User.Claims.Any(x => x.Type.ToUpper() == claimName.ToUpper())) return false;
+            var auth = permissions.Any(x => context.User.Claims.Any(c => c.Value.ToUpper() == x.ToUpper()));
             if (!auth) return false;
             return true;
         }
