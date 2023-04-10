@@ -30,7 +30,8 @@ namespace ObraItatiba.Service.NotasFiscais
                 string.IsNullOrEmpty(dto.ValorTotalNota.ToString())  || 
                 string.IsNullOrEmpty(dto.Fornecedor) || 
                 string.IsNullOrEmpty(dto.TimeId.ToString()) ||
-                string.IsNullOrEmpty(dto.UsuarioCadastroId.ToString()))
+                string.IsNullOrEmpty(dto.UsuarioCadastroId.ToString()) || 
+                string.IsNullOrEmpty(dto.TipoExportacao))
             {
                 throw new ExceptionService("Campo(s) obrigatório(s) vazio(s)!");
             }
@@ -50,7 +51,9 @@ namespace ObraItatiba.Service.NotasFiscais
                 Fornecedor = dto.Fornecedor,
                 TimeId = dto.TimeId,
                 UsuarioAlteracaoId = dto.UsuarioCadastroId,
-                ValorTotalNota = dto.ValorTotalNota
+                ValorTotalNota = dto.ValorTotalNota,
+                TipoExportacao = dto.TipoExportacao
+               
             };
             _context.Notas.Add(model);
             _context.SaveChanges();
@@ -75,6 +78,7 @@ namespace ObraItatiba.Service.NotasFiscais
         {
             var obj = _context.Notas
                 .Include(n => n.Documentos)
+                .AsNoTracking()
                 .FirstOrDefault(n => n.NumeroNota == numeroNota);
             return _mapper.Map<NotasModel, RetornoNotaThrDto>(obj);
         }
@@ -83,6 +87,9 @@ namespace ObraItatiba.Service.NotasFiscais
             var obj = _context.Notas
                 .Include(u => u.UsuarioCadastro)
                 .Include(u => u.UsuarioAlteracao)
+                .Include(c => c.Documentos)
+                .Include(t => t.Time)
+                .AsNoTracking()
                 .FirstOrDefault (x => x.Id == id);
             return _mapper.Map<NotasModel, RetornoNotaThrDto>(obj);
         }
@@ -94,6 +101,7 @@ namespace ObraItatiba.Service.NotasFiscais
                 .Include(u => u.UsuarioAlteracao)
                 .Include(d => d.Documentos)
                 .Include(x => x.Time)
+                .AsNoTracking()
                 .ToList();
             return _mapper.Map<List<NotasModel>, List<RetornoNotaThrDto>>(obj);
         }

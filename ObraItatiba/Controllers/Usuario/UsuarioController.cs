@@ -87,6 +87,19 @@ namespace ObraItatiba.Controllers.Usuario
                 return BadRequest(ex.Message);
             }
         }
+        [HttpDelete]
+        public async Task<ActionResult<string>> DeleteAll()
+        {
+            try
+            {
+                return Ok(_service.DeleteAll());
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }

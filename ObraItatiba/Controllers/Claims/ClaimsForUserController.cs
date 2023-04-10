@@ -13,7 +13,7 @@ namespace ObraItatiba.Controllers.Claims
         {
             this._service = service;
         }
-        [HttpPost]
+        [HttpPut]
         public async Task<ActionResult<ClaimForUserRetorno>> Insert([FromBody]ClaimsCadastroUsuarioDto dto)
         {
             try

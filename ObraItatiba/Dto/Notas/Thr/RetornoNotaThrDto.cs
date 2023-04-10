@@ -19,6 +19,7 @@ namespace ObraItatiba.Dto.Notas.Thr
         public UsuarioResumidoDto UsuarioAlteracao { get; set; }
         public DateTime DataHoraAlteracao { get; set; }
         public string Time { get; set; }
+        public string TipoExportacao { get; set; }
 
     }
 }

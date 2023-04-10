@@ -99,6 +99,7 @@ namespace ObraItatiba.Service.Usuario
             var usuarios = _context.Usuario
                 .Include(c => c.Claims)
                     .ThenInclude(x => x.Claim)
+                .AsNoTracking()
                 .ToList();
             return _mapper.Map<List<UsuarioModel>, List<RetornoUsuarioDto>>(usuarios);
         }
@@ -114,6 +115,14 @@ namespace ObraItatiba.Service.Usuario
                 .AsNoTracking()
                 .FirstOrDefault(x => x.Id == id);
             return _mapper.Map<UsuarioModel, RetornoUsuarioDto>(usuario);
+        }
+        public string DeleteAll()
+        {
+            _context.RemoveRange(
+                _context.Usuario.ToList()
+                );
+            _context.SaveChanges();
+            return "Usuários removidos com sucesso!";
         }
     }
 }

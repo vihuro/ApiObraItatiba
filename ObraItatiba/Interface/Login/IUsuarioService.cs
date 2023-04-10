@@ -9,5 +9,6 @@ namespace ObraItatiba.Interface.Login
         List<RetornoUsuarioDto> BuscarTodos();
         RetornoUsuarioDto BuscarPorId(int id);
         string Logar(LogarDto dto);
+        string DeleteAll();
     }
 }

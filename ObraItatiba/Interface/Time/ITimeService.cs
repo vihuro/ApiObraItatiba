@@ -7,5 +7,6 @@ namespace ObraItatiba.Interface.Time
         RetornoTimeDto Insert(InsertTimeDto dto);
         RetornoTimeDto BuscarPorTime(string time);
         List<RetornoTimeDto> ListTimes();
+        string DeleteAll();
     }
 }
