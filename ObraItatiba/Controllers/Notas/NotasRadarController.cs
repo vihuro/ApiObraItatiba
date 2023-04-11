@@ -16,7 +16,7 @@ namespace ObraItatiba.Controllers.Notas
             this._service = service;
         }
         [HttpGet]
-        [ClaimsAuthorizeAttribute("Financeiro", "regra1,regra2,regra3")]
+
         public ActionResult<List<NotasArquivoTextoDto>> BuscarNotasArquivoTexto()
         {
             try
