@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ObraItatiba.Context;
 using ObraItatiba.Dto.Notas.Documentos;
 using ObraItatiba.Dto.Notas.Radar;
+using ObraItatiba.Dto.Notas.Thr;
 using ObraItatiba.Interface.NotasTHR;
 using ObraItatiba.Models.Notas;
 using ObraItatiba.Service.ExceptionCuton;
@@ -20,7 +21,7 @@ namespace ObraItatiba.Service.NotasFiscais
             _mapper = mapper;
         }
 
-        public List<NumeroDocumentoDto> Insert(InserirDocumentosDto dto)
+        public List<ParcelasResumidasDto> Insert(InserirDocumentosDto dto)
         {
             if(string.IsNullOrEmpty(dto.NumeroDocumento) || 
                 string.IsNullOrEmpty(dto.NumeroNotaId.ToString()) ||
@@ -28,27 +29,28 @@ namespace ObraItatiba.Service.NotasFiscais
             {
                 throw new ExceptionService("Campo(s) obrigatório(s) vazio(s)!");
             }
-            var obj = new DocumentosModel()
+            var obj = new ParcelasModel()
             {
                 NotaId = dto.NumeroNotaId,
                 UsuarioCadastroId = dto.UsuarioCadastroId,
                 DataHoraCadastro = DateTime.UtcNow,
                 UsuarioAlteracaoId = dto.UsuarioCadastroId,
-                Documento = dto.NumeroDocumento,
+                NumeroParcela = dto.NumeroDocumento,
                 DataHoraAlteracao = DateTime.UtcNow,
+                Vencimento = Convert.ToDateTime(dto.Vencimento),
                 Status = "Aguardado pagamento"
             };
             _context.Documentos.Add(obj);
             _context.SaveChanges();
             return GetListDocumentosNotaId(obj.NotaId);
         }
-        public List<NumeroDocumentoDto> GetListDocumentosNotaId(int notaId)
+        public List<ParcelasResumidasDto> GetListDocumentosNotaId(int notaId)
         {
             var obj = _context.Documentos
                 .AsNoTracking()
                 .Where(x => x.NotaId == notaId)
                 .ToList();
-            return _mapper.Map<List<NumeroDocumentoDto>>(obj);
+            return _mapper.Map<List<ParcelasResumidasDto>>(obj);
         }
     }
 }

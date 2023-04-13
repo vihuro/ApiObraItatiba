@@ -4,13 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ObraItatiba.Models.Notas
 {
-    [Table("tab_Documentos")]
-    public class DocumentosModel
+    [Table("tab_Parcelas")]
+    public class ParcelasModel
     {
         [Key()]
         public int Id { get; set; }
-        public string Documento { get; set; }
+        public string NumeroParcela { get; set; }
         public string Status { get; set; }
+        public DateTime Vencimento { get; set; }
         public int NotaId { get; set; }
         public virtual NotasModel Nota { get; set; }
         public int UsuarioCadastroId { get; set; }

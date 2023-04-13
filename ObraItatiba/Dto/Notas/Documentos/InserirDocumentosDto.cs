@@ -4,6 +4,7 @@
     {
         public int NumeroNotaId { get;set; }
         public string NumeroDocumento { get;set;}
+        public DateTime Vencimento { get; set; }
         public int UsuarioCadastroId { get; set; }
     }
 }

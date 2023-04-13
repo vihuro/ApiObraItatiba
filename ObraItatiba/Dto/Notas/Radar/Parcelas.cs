@@ -1,8 +1,8 @@
 ﻿namespace ObraItatiba.Dto.Notas.Radar
 {
-    public class NumeroDocumentoDto
+    public class Parcelas
     {
-        public string NumeroDocumento { get; set; }
+        public string NumeroParcela { get; set; }
         public DateTime Vencimento { get; set; }
     }
 }

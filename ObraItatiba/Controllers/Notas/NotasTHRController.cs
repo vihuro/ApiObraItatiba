@@ -43,7 +43,6 @@ namespace ObraItatiba.Controllers.Notas
             }
         }
         [HttpGet]
-        [ClaimsAuthorizeAttribute("Financeiro", "regra1,regra2,regra3")]
 
         public async Task<ActionResult<RetornoNotaThrDto>> GetAll()
         {

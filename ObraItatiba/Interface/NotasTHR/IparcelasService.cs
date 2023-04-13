@@ -1,12 +1,13 @@
 ﻿using ObraItatiba.Dto.Notas.Documentos;
 using ObraItatiba.Dto.Notas.Radar;
+using ObraItatiba.Dto.Notas.Thr;
 
 namespace ObraItatiba.Interface.NotasTHR
 {
     public interface IparcelasService
     {
-        List<NumeroDocumentoDto> Insert(InserirDocumentosDto dto);
-        List<NumeroDocumentoDto> GetListDocumentosNotaId(int notaId);
+        List<ParcelasResumidasDto> Insert(InserirDocumentosDto dto);
+        List<ParcelasResumidasDto> GetListDocumentosNotaId(int notaId);
 
     }
 }

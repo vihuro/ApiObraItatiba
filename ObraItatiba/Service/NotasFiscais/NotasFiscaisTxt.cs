@@ -9,7 +9,7 @@ namespace ObraItatiba.Service.NotasFiscais
         public List<NotasArquivoTextoDto> GerarArquivo()
         {
             var list = new List<NotasArquivoTextoDto>();
-            var listNumeroDocumento = new List<NumeroDocumentoDto>();
+            var listNumeroDocumento = new List<Parcelas>();
             using (var leitor = new StreamReader(@"C:\\api_obra\\reports\\obra_bi_REL_teste.txt",
                                                  Encoding.GetEncoding("ISO-8859-1"), true))
             {
@@ -30,20 +30,17 @@ namespace ObraItatiba.Service.NotasFiscais
                             ValorTotalNota = decimal.Parse(valores[2].Replace("\"", "")).ToString("###,###.##"),
                             Cnpj = valores[3].Replace("\"", "").Trim(),
                             DescricaoProdutoServico = valores[4].Replace("\"", ""),
-                            NumeroDocumento = new List<NumeroDocumentoDto>()
-                            {
-
-                            },
+                            Parcelas = new List<Parcelas>(),
                             ProdutoServico = new List<DescricaoProdutoServico>()
                         };
                         if (valores[9].Replace("\"", "") != string.Empty)
                         {
-                            dto.NumeroDocumento = new List<NumeroDocumentoDto>()
+                            dto.Parcelas = new List<Parcelas>()
                             {
-                                new NumeroDocumentoDto()
+                                new Parcelas()
                                 {
-                                NumeroDocumento = valores[5].Replace("\"", ""),
-                                Vencimento = Convert.ToDateTime(valores[9].Replace("\"", ""))
+                                NumeroParcela = valores[5].Replace("\"", ""),
+                                Vencimento = Convert.ToDateTime(valores[9].Replace("\"", "")).ToUniversalTime(),
                                 }
                             };
                         }
@@ -63,15 +60,15 @@ namespace ObraItatiba.Service.NotasFiscais
                     }
                     else
                     {
-                        if (verificao.NumeroDocumento == null)
+                        if (verificao.Parcelas == null)
                         {
 
-                            var documento = new List<NumeroDocumentoDto>()
+                            var documento = new List<Parcelas>()
                             {
-                                new NumeroDocumentoDto()
+                                new Parcelas()
                                 {
-                                    NumeroDocumento = valores[5].Replace("\"",""),
-                                    Vencimento = Convert.ToDateTime(valores[9].Replace("\"", ""))
+                                    NumeroParcela = valores[5].Replace("\"",""),
+                                    Vencimento = Convert.ToDateTime(valores[9].Replace("\"", "")).ToUniversalTime()
 
                                 }
                             };
@@ -81,10 +78,10 @@ namespace ObraItatiba.Service.NotasFiscais
                             if (valores[9].Replace("\"", "") != string.Empty)
                             {
 
-                                verificao.NumeroDocumento.Add(new NumeroDocumentoDto()
+                                verificao.Parcelas.Add(new Parcelas()
                                 {
-                                    NumeroDocumento = valores[5].Replace("\"", ""),
-                                    Vencimento = Convert.ToDateTime(valores[9].Replace("\"", ""))
+                                    NumeroParcela = valores[5].Replace("\"", ""),
+                                    Vencimento = Convert.ToDateTime(valores[9].Replace("\"", "")).ToUniversalTime()
 
                                 });
                             }

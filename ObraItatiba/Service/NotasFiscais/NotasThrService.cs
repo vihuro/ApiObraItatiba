@@ -14,13 +14,16 @@ namespace ObraItatiba.Service.NotasFiscais
         private readonly ContextBase _context;
         private readonly IMapper _mapper;
         private readonly IparcelasService _parcelasService;
+        private readonly IProdutoServicoService _produtoServicoService;
         public NotasThrService(ContextBase context,
                                 IMapper mapper,
-                                IparcelasService parcelaService) 
+                                IparcelasService parcelaService,
+                                IProdutoServicoService produtoServicoService) 
         {  
             _context = context; 
             _mapper = mapper;
             _parcelasService = parcelaService;
+            _produtoServicoService = produtoServicoService;
         }
         public RetornoNotaThrDto Insert(InsertNotaDto dto)
         {
@@ -39,7 +42,6 @@ namespace ObraItatiba.Service.NotasFiscais
 
             var model = new NotasModel()
             {
-                ProdutoServico = dto.ProdutoServico,
                 NumeroNota = dto.NumeroNota,
                 Autorizador = dto.Autorizador,
                 AvulsoFinalidade = dto.AvulsoFinalidade,
@@ -65,9 +67,23 @@ namespace ObraItatiba.Service.NotasFiscais
                     {
                         NumeroDocumento = item.Parcela,
                         NumeroNotaId = model.Id,
-                        UsuarioCadastroId = model.UsuarioCadastroId
+                        UsuarioCadastroId = model.UsuarioCadastroId,
+                        Vencimento = item.Vencimento,
                     };
                     _parcelasService.Insert(parcela);
+                }
+            }
+            if(dto.ProdutosServico.Count > 0)
+            {
+                foreach(var item in dto.ProdutosServico)
+                {
+                    var produto = new InsertProdutoServicoDto()
+                    {
+                        Complemento = item.Complemento,
+                        DescricaoProdutoServico = item.DescricaoProdutoServico,
+                        NotaId = model.Id,
+                    };
+                    _produtoServicoService.Insert(produto);
                 }
             }
             return GetNotaId(model.Id);
@@ -77,7 +93,10 @@ namespace ObraItatiba.Service.NotasFiscais
         public RetornoNotaThrDto GetNotaNumeroNota(int numeroNota)
         {
             var obj = _context.Notas
-                .Include(n => n.Documentos)
+                .Include(n => n.Parcelas)
+                .Include(p => p.ProdutosServico)
+                .Include(u => u.UsuarioCadastro)
+                .Include(u => u.UsuarioAlteracao)
                 .AsNoTracking()
                 .FirstOrDefault(n => n.NumeroNota == numeroNota);
             return _mapper.Map<NotasModel, RetornoNotaThrDto>(obj);
@@ -87,7 +106,8 @@ namespace ObraItatiba.Service.NotasFiscais
             var obj = _context.Notas
                 .Include(u => u.UsuarioCadastro)
                 .Include(u => u.UsuarioAlteracao)
-                .Include(c => c.Documentos)
+                .Include(c => c.Parcelas)
+                .Include(p => p.ProdutosServico)
                 .Include(t => t.Time)
                 .AsNoTracking()
                 .FirstOrDefault (x => x.Id == id);
@@ -99,7 +119,8 @@ namespace ObraItatiba.Service.NotasFiscais
             var obj = _context.Notas
                 .Include(u => u.UsuarioCadastro)
                 .Include(u => u.UsuarioAlteracao)
-                .Include(d => d.Documentos)
+                .Include(d => d.Parcelas)
+                .Include(p => p.ProdutosServico)
                 .Include(x => x.Time)
                 .AsNoTracking()
                 .ToList();

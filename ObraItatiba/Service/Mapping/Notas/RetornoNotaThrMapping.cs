@@ -11,7 +11,11 @@ namespace ObraItatiba.Service.Mapping.Notas
             CreateMap<NotasModel, RetornoNotaThrDto>()
                 .ForMember(x => x.NumeroNota, map => map.MapFrom(src => src.NumeroNota))
                 .ForMember(x => x.AvulsoFinalidade, map => map.MapFrom(src => src.AvulsoFinalidade))
-                .ForMember(x => x.ProdutoServico, map => map.MapFrom(src => src.ProdutoServico))
+                .ForMember(x => x.ProdutosServico, map => map.MapFrom(src => src.ProdutosServico.Select(p => new ProdutoServicoResumidoDto
+                {
+                    Complemento = p.Complemento,
+                    DescricaoProdutoServico = p.DescricaoProdutoServico
+                })))
                 .ForMember(x => x.DescricaoServico, map => map.MapFrom(src => src.DescricaoProdutoServico))
                 .ForMember(x => x.DataHoraCadastro, map => map.MapFrom(src => src.DataHoraCadastro))
                 .ForPath(x => x.UsuarioCadastro.UsuarioId, map => map.MapFrom(src => src.UsuarioCadastro.Id))
@@ -24,7 +28,12 @@ namespace ObraItatiba.Service.Mapping.Notas
                 .ForMember(x => x.ValorTotalNota, map => map.MapFrom(src => src.ValorTotalNota))
                 .ForMember(x => x.TipoExportacao, map => map.MapFrom(src => src.TipoExportacao))
                 .ForPath(x => x.Time, map => map.MapFrom(src => src.Time.Time))
-                .ForMember(x => x.Parcelas, map => map.MapFrom(src => src.Documentos.Select(d => new ParcelasResumidasDto { Parcela = d.Documento})))
+                .ForMember(x => x.Parcelas, map => map.MapFrom(src => src.Parcelas.Select(d => new ParcelasResumidasDto { 
+                    Parcela = d.NumeroParcela,
+                    StatusParcela = d.Status,
+                    Vencimento = d.Vencimento
+                
+                })))
                 ;
         }
     }

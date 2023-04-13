@@ -17,7 +17,6 @@ namespace ObraItatiba.Models.Notas
         public string? DescricaoProdutoServico { get; set; }
         public string? AvulsoFinalidade { get; set; }
         public string Autorizador { get; set; }
-        public string ProdutoServico { get; set; }
         public string TipoExportacao { get; set; }
         public int UsuarioCadastroId { get; set; }
         public virtual UsuarioModel UsuarioCadastro { get; set; }
@@ -27,7 +26,8 @@ namespace ObraItatiba.Models.Notas
         public DateTime DataHoraAlteracao { get; set; }
         public int TimeId { get; set; }
         public virtual TimesModel Time { get; set; }
-        public virtual List<DocumentosModel> Documentos { get; set; }
+        public virtual List<ParcelasModel> Parcelas { get; set; }
+        public virtual List<ProdutoServicoModel> ProdutosServico { get; set; }
         
     }
 }

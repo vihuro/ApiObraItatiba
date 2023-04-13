@@ -10,7 +10,7 @@ namespace ObraItatiba.Dto.Notas.Radar
         public string ValorTotalNota { get; set; }
         public string DescricaoProdutoServico { get; set; }
         public List<DescricaoProdutoServico> ProdutoServico { get; set; }
-        public List<NumeroDocumentoDto> NumeroDocumento { get; set; }
+        public List<Parcelas> Parcelas{ get; set; }
 
     }
 }

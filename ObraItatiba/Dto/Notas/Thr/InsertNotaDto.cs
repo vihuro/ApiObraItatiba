@@ -9,10 +9,10 @@
         public string? DescricaoProdutoServico { get; set; }
         public string? AvulsoFinalidade { get; set; }
         public string Autorizador { get; set; }
-        public string ProdutoServico { get; set; }
         public int UsuarioCadastroId { get; set; }
         public int TimeId { get; set; }
         public string TipoExportacao { get; set; }
-        public List<ParcelasResumidasDto> Parcelas { get; set; }
+        public List<InsertParcelaDto> Parcelas { get; set; }
+        public List<ProdutoServicoResumidoDto> ProdutosServico { get;set; }
     }
 }

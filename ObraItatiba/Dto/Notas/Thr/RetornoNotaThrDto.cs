@@ -12,7 +12,7 @@ namespace ObraItatiba.Dto.Notas.Thr
         public string DescricaoServico { get; set; }
         public string AvulsoFinalidade { get;set; }
         public string Autorizador { get; set; }
-        public string ProdutoServico { get; set; }
+        public List<ProdutoServicoResumidoDto> ProdutosServico { get; set; }
         public List<ParcelasResumidasDto> Parcelas { get; set; }
         public UsuarioResumidoDto UsuarioCadastro { get; set; }
         public DateTime DataHoraCadastro { get; set; }
