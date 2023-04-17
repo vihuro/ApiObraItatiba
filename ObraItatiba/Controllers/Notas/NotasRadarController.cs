@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ObraItatiba.Dto.Notas.Radar;
+using ObraItatiba.Dto.Notas.Thr;
 using ObraItatiba.Interface.NotasRadar;
-using ObraItatiba.Service.JWT;
-using System.Text;
 
 namespace ObraItatiba.Controllers.Notas
 {
@@ -29,6 +28,19 @@ namespace ObraItatiba.Controllers.Notas
                 return BadRequest(ex.Message);
             }
 
+        }
+        [HttpGet("notsaved")]
+        public async Task<ActionResult<List<RetornoNotaThrDto>>> GetNotSaved()
+        {
+            try
+            {
+                return Ok(_service.NotSaved());
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

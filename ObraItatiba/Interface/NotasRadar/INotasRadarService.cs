@@ -5,5 +5,6 @@ namespace ObraItatiba.Interface.NotasRadar
     public interface INotasRadarService
     {
         List<NotasArquivoTextoDto> GerarArquivo();
+        List<NotasArquivoTextoDto> NotSaved();
     }
 }

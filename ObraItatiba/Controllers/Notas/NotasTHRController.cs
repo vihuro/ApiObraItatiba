@@ -30,7 +30,7 @@ namespace ObraItatiba.Controllers.Notas
         }
         [HttpGet("{numeroNota}")]
         [ClaimsAuthorizeAttribute("Financeiro", "regra1,regra2,regra3")]
-        public async Task<ActionResult<RetornoNotaThrDto>> GetNotNumeroNota(int numeroNota)
+        public async Task<ActionResult<List<RetornoNotaThrDto>>> GetNotNumeroNota(int numeroNota)
         {
             try
             {
@@ -42,6 +42,8 @@ namespace ObraItatiba.Controllers.Notas
                 return BadRequest(ex.Message);
             }
         }
+
+
         [HttpGet]
 
         public async Task<ActionResult<RetornoNotaThrDto>> GetAll()

@@ -1,11 +1,18 @@
 ﻿using System.Text;
 using ObraItatiba.Interface.NotasRadar;
 using ObraItatiba.Dto.Notas.Radar;
+using ObraItatiba.Interface.NotasTHR;
 
 namespace ObraItatiba.Service.NotasFiscais
 {
     public class NotasFiscaisTxt : INotasRadarService
     {
+        public readonly INotasThrService _notasThrService;
+        public NotasFiscaisTxt(INotasThrService notasThrService)
+        {
+            _notasThrService = notasThrService;
+        }
+
         public List<NotasArquivoTextoDto> GerarArquivo()
         {
             var list = new List<NotasArquivoTextoDto>();
@@ -114,6 +121,34 @@ namespace ObraItatiba.Service.NotasFiscais
                 }
             }
             return list;
+        }
+        public List<NotasArquivoTextoDto> NotSaved()
+        {
+            var objTHR = _notasThrService.GetAll();
+            var objRADAR = GerarArquivo();
+            var obj = new List<NotasArquivoTextoDto>();
+            foreach(var item in objRADAR)
+            {
+                var exists = objTHR.Any(x => x.NumeroNota.ToString() == item.NumeroNota &&
+                                        x.Cnpj == item.Cnpj.Replace(".", "").Replace("-", "").Replace("/", ""));
+
+                if (!exists)
+                {
+                    obj.Add(new NotasArquivoTextoDto
+                    {
+                        Cnpj = item.Cnpj,
+                        Fornecedor = item.Fornecedor,
+                        NumeroNota = item.NumeroNota,
+                        ProdutoServico = item.ProdutoServico,
+                        ValorTotalNota = item.ValorTotalNota,
+                        DescricaoProdutoServico = item.DescricaoProdutoServico,
+                        Parcelas = item.Parcelas
+                    });
+                }
+
+            }
+            
+            return obj;
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ObraItatiba.Context;
 using ObraItatiba.Dto.Notas.Documentos;
 using ObraItatiba.Dto.Notas.Thr;
+using ObraItatiba.Interface.NotasRadar;
 using ObraItatiba.Interface.NotasTHR;
 using ObraItatiba.Models.Notas;
 using ObraItatiba.Service.ExceptionCuton;
@@ -38,7 +39,8 @@ namespace ObraItatiba.Service.NotasFiscais
             {
                 throw new ExceptionService("Campo(s) obrigatório(s) vazio(s)!");
             }
-            if (GetNotaNumeroNota(dto.NumeroNota) != null) throw new ExceptionService("Já existe essa nota!");
+            var lista = GetNotaNumeroNota(dto.NumeroNota);
+            if (lista.Count > 0 && lista.Any(x => x.Cnpj == dto.Cnpj)) throw new ExceptionService("Já existe essa nota!");
 
             var model = new NotasModel()
             {
@@ -90,16 +92,19 @@ namespace ObraItatiba.Service.NotasFiscais
 
         }
 
-        public RetornoNotaThrDto GetNotaNumeroNota(int numeroNota)
+        public List<RetornoNotaThrDto> GetNotaNumeroNota(int numeroNota)
         {
             var obj = _context.Notas
                 .Include(n => n.Parcelas)
                 .Include(p => p.ProdutosServico)
                 .Include(u => u.UsuarioCadastro)
                 .Include(u => u.UsuarioAlteracao)
+                .Include(p => p.ProdutosServico)
+                .Include(t => t.Time)
                 .AsNoTracking()
-                .FirstOrDefault(n => n.NumeroNota == numeroNota);
-            return _mapper.Map<NotasModel, RetornoNotaThrDto>(obj);
+                .Where(n => n.NumeroNota == numeroNota)
+                .ToList();
+            return _mapper.Map<List<NotasModel>, List<RetornoNotaThrDto>>(obj);
         }
         public RetornoNotaThrDto GetNotaId (int id)
         {
@@ -126,6 +131,7 @@ namespace ObraItatiba.Service.NotasFiscais
                 .ToList();
             return _mapper.Map<List<NotasModel>, List<RetornoNotaThrDto>>(obj);
         }
+
 
         public string DeleteAll()
         {
