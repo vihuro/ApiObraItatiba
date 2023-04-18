@@ -52,6 +52,32 @@ namespace ObraItatiba.Controllers.Time
                 return BadRequest(ex.Message);
             }
         }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<string>> DeleteForId(int id)
+        {
+            try
+            {
+                return Ok(_service.DeleteForId(id));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("{teste}/aqui")]
+        public async Task<ActionResult<RetornoTimeDto>> GetForId(int teste)
+        {
+            try
+            {
+                return Ok(_service.GetForId(teste));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpDelete]
         public async Task<ActionResult<string>> DeleteAll()
         {

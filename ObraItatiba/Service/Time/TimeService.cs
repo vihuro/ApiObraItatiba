@@ -39,8 +39,18 @@ namespace ObraItatiba.Service.Time
             };
             _context.Time.Add(obj);
             _context.SaveChanges();
-            return _mapper.Map<TimesModel, RetornoTimeDto>(obj);
+            return BuscarPorTime(obj.Time);
 
+        }
+
+        public RetornoTimeDto GetForId(int id)
+        {
+            var obj = _context.Time
+                .Include(u => u.UsuarioCadastro)
+                .Include(u => u.UsuarioAlteracao)
+                .AsNoTracking()
+                .FirstOrDefault(x => x.Id == id);
+            return _mapper.Map<TimesModel,RetornoTimeDto>(obj);
         }
 
         public RetornoTimeDto BuscarPorTime(string time)
@@ -62,7 +72,13 @@ namespace ObraItatiba.Service.Time
                 .ToList();
             return _mapper.Map<List<TimesModel>, List<RetornoTimeDto>>(list);
         }
-
+        public string DeleteForId(int id)
+        {
+            var obj = _context.Time.Find(id);
+            _context.Time.Remove(obj);
+            _context.SaveChanges();
+            return "Item removido com sucesso!";
+        }
         public string DeleteAll()
         {
             var obj = _context.Time.ToList();
