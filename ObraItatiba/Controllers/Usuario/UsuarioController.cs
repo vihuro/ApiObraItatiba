@@ -45,7 +45,7 @@ namespace ObraItatiba.Controllers.Usuario
             }
         }
 
-        [HttpGet("{apelido}")]
+        [HttpGet("apelido/{apelido}")]
         [ClaimsAuthorizeAttribute("Admin","regra1,regra2,regra3")]
         public async Task<ActionResult<RetornoUsuarioDto>> ProcurarPorApelido(string apelido)
         {
@@ -73,8 +73,8 @@ namespace ObraItatiba.Controllers.Usuario
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("id/{id}")]
-        [ClaimsAuthorizeAttribute("Admin", "")]
+        [HttpGet("{id}")]
+        //[ClaimsAuthorizeAttribute("Admin", "")]
         public async Task<ActionResult<RetornoUsuarioDto>> BuscarPorId(int id)
         {
             try

@@ -112,3 +112,4 @@ C:\Users\thr\source\repos\ApiObraItatiba\ObraItatiba\obj\Release\net7.0\refint\O
 C:\Users\thr\source\repos\ApiObraItatiba\ObraItatiba\obj\Release\net7.0\ObraItatiba.pdb
 C:\Users\thr\source\repos\ApiObraItatiba\ObraItatiba\obj\Release\net7.0\ObraItatiba.genruntimeconfig.cache
 C:\Users\thr\source\repos\ApiObraItatiba\ObraItatiba\obj\Release\net7.0\ref\ObraItatiba.dll
+C:\Users\thr\Desktop\API\ApiObraItatiba\ObraItatiba\bin\Release\net7.0\web.config

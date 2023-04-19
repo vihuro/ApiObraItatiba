@@ -15,7 +15,7 @@ namespace ObraItatiba.Controllers.Notas
             _service = service;
         }
         [HttpPost]
-        [ClaimsAuthorizeAttribute("Financeiro", "regra1,regra2,regra3")]
+        [ClaimsAuthorizeAttribute("Financeiro", "Full,regra2,regra3")]
         public async Task<ActionResult<RetornoNotaThrDto>> Insert([FromBody] InsertNotaDto dto) 
         {
             try
@@ -29,7 +29,7 @@ namespace ObraItatiba.Controllers.Notas
             }
         }
         [HttpGet("{numeroNota}")]
-        [ClaimsAuthorizeAttribute("Financeiro", "regra1,regra2,regra3")]
+        [ClaimsAuthorizeAttribute("Financeiro", "Full,regra2,regra3")]
         public async Task<ActionResult<List<RetornoNotaThrDto>>> GetNotNumeroNota(int numeroNota)
         {
             try
@@ -45,7 +45,7 @@ namespace ObraItatiba.Controllers.Notas
 
 
         [HttpGet]
-
+        [ClaimsAuthorizeAttribute("Financeiro", "Full,regra2,regra3")]
         public async Task<ActionResult<RetornoNotaThrDto>> GetAll()
         {
             try
@@ -59,8 +59,7 @@ namespace ObraItatiba.Controllers.Notas
             }
         }
         [HttpDelete]
-        [ClaimsAuthorizeAttribute("Financeiro", "regra1,regra2,regra3")]
-
+        [ClaimsAuthorizeAttribute("Financeiro", "Full,regra2,regra3")]
         public async Task<ActionResult<string>> DeleteAll()
         {
             try

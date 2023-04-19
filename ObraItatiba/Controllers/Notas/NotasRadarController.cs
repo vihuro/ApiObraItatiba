@@ -2,6 +2,7 @@
 using ObraItatiba.Dto.Notas.Radar;
 using ObraItatiba.Dto.Notas.Thr;
 using ObraItatiba.Interface.NotasRadar;
+using ObraItatiba.Service.JWT;
 
 namespace ObraItatiba.Controllers.Notas
 {
@@ -15,7 +16,7 @@ namespace ObraItatiba.Controllers.Notas
             this._service = service;
         }
         [HttpGet]
-
+        [ClaimsAuthorizeAttribute("Financeiro", "Full,regra2,regra3")]
         public ActionResult<List<NotasArquivoTextoDto>> BuscarNotasArquivoTexto()
         {
             try
@@ -30,6 +31,7 @@ namespace ObraItatiba.Controllers.Notas
 
         }
         [HttpGet("notsaved")]
+        [ClaimsAuthorizeAttribute("Financeiro", "Full,regra2,regra3")]
         public async Task<ActionResult<List<RetornoNotaThrDto>>> GetNotSaved()
         {
             try
