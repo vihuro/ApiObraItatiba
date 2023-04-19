@@ -52,7 +52,7 @@ namespace ObraItatiba.Controllers.Time
                 return BadRequest(ex.Message);
             }
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public async Task<ActionResult<string>> DeleteForId(int id)
         {
             try
