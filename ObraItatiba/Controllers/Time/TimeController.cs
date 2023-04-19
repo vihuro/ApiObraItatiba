@@ -56,8 +56,8 @@ namespace ObraItatiba.Controllers.Time
                 return BadRequest(ex.Message);
             }
         }
-        [HttpDelete("{id}/delete")]
-        public async Task<ActionResult<string>> DeletarPorId(int id)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<string>> DeleteForId(int id)
         {
             try
             {
@@ -69,13 +69,13 @@ namespace ObraItatiba.Controllers.Time
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("{teste}/aqui")]
+        [HttpGet("{id}")]
         [ClaimsAuthorizeAttribute("Financeiro", "Full,regra2,regra3")]
-        public async Task<ActionResult<RetornoTimeDto>> GetForId([FromRoute]int teste)
+        public async Task<ActionResult<RetornoTimeDto>> GetForId([FromRoute]int id)
         {
             try
             {
-                return Ok(_service.GetForId(teste));
+                return Ok(_service.GetForId(id));
             }
             catch (Exception ex)
             {
