@@ -168,3 +168,4 @@ C:\Users\thr\Desktop\API\ApiObraItatiba\obraitatiba\obj\Debug\net7.0\ObraItatiba
 C:\Users\thr\Desktop\API\ApiObraItatiba\obraitatiba\obj\Debug\net7.0\ref\ObraItatiba.dll
 C:\Users\thr\Desktop\API\ApiObraItatiba\ObraItatiba\bin\Debug\net7.0\libman.json
 C:\Users\thr\source\repos\ApiObraItatiba\obraitatiba\bin\Debug\net7.0\libman.json
+C:\Users\thr\Desktop\API\ApiObraItatiba\ObraItatiba\bin\Debug\net7.0\web.Release.config

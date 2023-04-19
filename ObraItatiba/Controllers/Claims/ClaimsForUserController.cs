@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ObraItatiba.Dto.Claims.ClaimsUser;
 using ObraItatiba.Interface.Login;
+using ObraItatiba.Service.JWT;
 
 namespace ObraItatiba.Controllers.Claims
 {
@@ -14,6 +15,7 @@ namespace ObraItatiba.Controllers.Claims
             this._service = service;
         }
         [HttpPut]
+        //[ClaimsAuthorizeAttribute("Ti", "Full,regra2,regra3")]
         public async Task<ActionResult<ClaimForUserRetorno>> Insert([FromBody]ClaimsCadastroUsuarioDto dto)
         {
             try
@@ -27,6 +29,7 @@ namespace ObraItatiba.Controllers.Claims
             }
         }
         [HttpGet("todos")]
+        [ClaimsAuthorizeAttribute("Ti", "Full,regra2,regra3")]
         public async Task<ActionResult<List<ListClaimsForUserDto>>> GetAllClaimsForUser()
         {
             try
@@ -40,6 +43,7 @@ namespace ObraItatiba.Controllers.Claims
             }
         }
         [HttpGet("{idUsuario}")]
+        [ClaimsAuthorizeAttribute("Ti", "Full,regra2,regra3")]
         public async Task<ActionResult<List<ClaimsForUserDto>>> GetClaimsForUserId(int idUsuario)
         {
             try

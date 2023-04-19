@@ -4,8 +4,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
+<<<<<<< HEAD
     <_PublishTargetUrl>C:\Users\thr\Desktop\publishApiObra</_PublishTargetUrl>
     <History>True|2023-04-18T11:35:29.7436689Z;True|2023-04-18T08:30:01.8216997-03:00;True|2023-04-18T08:23:38.8165767-03:00;</History>
+=======
+    <_PublishTargetUrl>C:\Users\thr\Desktop\API\ApiObraItatiba\ObraItatiba\bin\Release\net7.0\publish\</_PublishTargetUrl>
+    <History>True|2023-04-19T01:38:45.0989732Z;True|2023-04-18T22:36:24.8021198-03:00;</History>
+>>>>>>> d66716c49b7425350da6dd92914163ad6a3fcb34
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ObraItatiba.Dto.Time;
 using ObraItatiba.Interface.Time;
+using ObraItatiba.Service.JWT;
 
 namespace ObraItatiba.Controllers.Time
 {
@@ -14,6 +15,7 @@ namespace ObraItatiba.Controllers.Time
             _service = service;
         }
         [HttpPost]
+        [ClaimsAuthorizeAttribute("Financeiro", "Full,regra2,regra3")]
         public async Task<ActionResult<RetornoTimeDto>> Insert(InsertTimeDto dto)
         {
             try
@@ -27,6 +29,7 @@ namespace ObraItatiba.Controllers.Time
             }
         }
         [HttpGet("{time}")]
+        [ClaimsAuthorizeAttribute("Financeiro", "Full,regra2,regra3")]
         public async Task<ActionResult<RetornoTimeDto>> TimeGetForTime(string time)
         {
             try
@@ -40,6 +43,7 @@ namespace ObraItatiba.Controllers.Time
             }
         }
         [HttpGet]
+        [ClaimsAuthorizeAttribute("Financeiro", "Full,regra2,regra3")]
         public async Task<ActionResult<List<RetornoTimeDto>>> GetTimeList()
         {
             try
@@ -52,7 +56,7 @@ namespace ObraItatiba.Controllers.Time
                 return BadRequest(ex.Message);
             }
         }
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult<string>> DeleteForId(int id)
         {
             try
@@ -65,12 +69,13 @@ namespace ObraItatiba.Controllers.Time
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("{teste}/aqui")]
-        public async Task<ActionResult<RetornoTimeDto>> GetForId(int teste)
+        [HttpGet("{id}")]
+        [ClaimsAuthorizeAttribute("Financeiro", "Full,regra2,regra3")]
+        public async Task<ActionResult<RetornoTimeDto>> GetForId([FromRoute]int id)
         {
             try
             {
-                return Ok(_service.GetForId(teste));
+                return Ok(_service.GetForId(id));
             }
             catch (Exception ex)
             {
@@ -79,6 +84,7 @@ namespace ObraItatiba.Controllers.Time
             }
         }
         [HttpDelete]
+        [ClaimsAuthorizeAttribute("Financeiro", "Full,regra2,regra3")]
         public async Task<ActionResult<string>> DeleteAll()
         {
             try

@@ -2,6 +2,7 @@
 using ObraItatiba.Dto.Claims.ClaimsType;
 using ObraItatiba.Dto.Claims.ClaimsUser;
 using ObraItatiba.Interface.Login;
+using ObraItatiba.Service.JWT;
 
 namespace ObraItatiba.Controllers.Claims
 {
@@ -16,6 +17,7 @@ namespace ObraItatiba.Controllers.Claims
         }
 
         [HttpPost]
+        //[ClaimsAuthorizeAttribute("Ti", "Full,regra2,regra3")]
         public async Task<ActionResult<RetornoClaimsTypeDto>> Insert([FromBody]CreateClaimsTypeDto dto)
         {
             try
@@ -29,6 +31,7 @@ namespace ObraItatiba.Controllers.Claims
             }
         }
         [HttpGet("{id}")]
+        [ClaimsAuthorizeAttribute("Ti", "Full,regra2,regra3")]
         public async Task<ActionResult<RetornoClaimsTypeDto>> SelectFromId(int id)
         {
             try
@@ -42,6 +45,7 @@ namespace ObraItatiba.Controllers.Claims
             }
         }
         [HttpGet]
+        [ClaimsAuthorizeAttribute("Ti", "Full,regra2,regra3")]
         public async Task<ActionResult<List<RetornoClaimsTypeDto>>> SelectAll()
         {
             try
