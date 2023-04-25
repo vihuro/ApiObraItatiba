@@ -90,9 +90,32 @@ namespace ObraItatiba.Service.Usuario
             }
             var usuario = _context.Usuario
                                 .Include(c => c.Claims)
+                                    .ThenInclude(c => c.Claim)
                                 .AsNoTracking()
                                 .FirstOrDefault(x => x.Apelido.ToLower() == apelido.ToLower());
             return _mapper.Map<UsuarioModel, RetornoUsuarioDto>(usuario);
+        }
+        public RetornoUsuarioDto AlterarSenha(LogarDto dto)
+        {
+            var obj = ProcurarPorApelido(dto.Apelido);
+            if(obj == null)
+            {
+                throw new ExceptionService("Usuário não encontrado!") { HResult = 404 };
+            }
+            if (string.IsNullOrEmpty(dto.Senha))
+            {
+                throw new ExceptionService("Campo(s) obrigatório(s) vazio(s)!");
+            }
+            var model = new UsuarioModel()
+            {
+                Apelido = dto.Apelido,
+                Id = obj.UsuarioId,
+                Nome = obj.NomeUsuario,
+                Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha)
+            };
+            _context.Usuario.Update(model);
+            _context.SaveChanges();
+            return ProcurarPorApelido(model.Apelido);
         }
         public List<RetornoUsuarioDto> BuscarTodos()
         {

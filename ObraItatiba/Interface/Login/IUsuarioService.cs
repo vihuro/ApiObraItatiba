@@ -7,6 +7,7 @@ namespace ObraItatiba.Interface.Login
         RetornoUsuarioDto Insert(CreateUsuarioDto dto);
         RetornoUsuarioDto ProcurarPorApelido(string apelido);
         List<RetornoUsuarioDto> BuscarTodos();
+        RetornoUsuarioDto AlterarSenha(LogarDto dto);
         RetornoUsuarioDto BuscarPorId(int id);
         string Logar(LogarDto dto);
         string DeleteAll();

@@ -59,6 +59,23 @@ namespace ObraItatiba.Controllers.Usuario
                 return BadRequest(ex.Message);
             }
         }
+        [HttpPut]
+        public async Task<ActionResult<RetornoUsuarioDto>> AlterarSenha(LogarDto dto)
+        {
+            try
+            {
+                return Ok(_service.AlterarSenha(dto));
+            }
+            catch (Exception ex)
+            {
+
+                if(ex.HResult == 404)
+                {
+                    return NotFound(ex.Message);
+                }
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpGet("todos")]
         [ClaimsAuthorizeAttribute("Admin", "")]
         public async Task<ActionResult<List<RetornoUsuarioDto>>> BuscarTodos()
