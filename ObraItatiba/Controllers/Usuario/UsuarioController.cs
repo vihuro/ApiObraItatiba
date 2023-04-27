@@ -16,6 +16,7 @@ namespace ObraItatiba.Controllers.Usuario
             _service = service;
         }
         [HttpPost("create")]
+        [ClaimsAuthorizeAttribute("Ti", "Full")]
         public async Task<ActionResult<RetornoUsuarioDto>> Create([FromBody] CreateUsuarioDto dto)
         {
             try
@@ -46,7 +47,7 @@ namespace ObraItatiba.Controllers.Usuario
         }
 
         [HttpGet("apelido/{apelido}")]
-        [ClaimsAuthorizeAttribute("Admin","regra1,regra2,regra3")]
+        [ClaimsAuthorizeAttribute("Ti","Full")]
         public async Task<ActionResult<RetornoUsuarioDto>> ProcurarPorApelido(string apelido)
         {
             try
@@ -60,6 +61,7 @@ namespace ObraItatiba.Controllers.Usuario
             }
         }
         [HttpPut]
+        [ClaimsAuthorizeAttribute("Ti", "Full")]
         public async Task<ActionResult<RetornoUsuarioDto>> AlterarSenha(LogarDto dto)
         {
             try
@@ -77,7 +79,7 @@ namespace ObraItatiba.Controllers.Usuario
             }
         }
         [HttpGet("todos")]
-        [ClaimsAuthorizeAttribute("Admin", "")]
+        [ClaimsAuthorizeAttribute("Ti", "Full")]
         public async Task<ActionResult<List<RetornoUsuarioDto>>> BuscarTodos()
         {
             try
@@ -91,7 +93,7 @@ namespace ObraItatiba.Controllers.Usuario
             }
         }
         [HttpGet("{id}")]
-        //[ClaimsAuthorizeAttribute("Admin", "")]
+        [ClaimsAuthorizeAttribute("Ti", "Full")]
         public async Task<ActionResult<RetornoUsuarioDto>> BuscarPorId(int id)
         {
             try
@@ -105,6 +107,8 @@ namespace ObraItatiba.Controllers.Usuario
             }
         }
         [HttpDelete]
+        [ClaimsAuthorizeAttribute("Ti", "Full")]
+
         public async Task<ActionResult<string>> DeleteAll()
         {
             try
