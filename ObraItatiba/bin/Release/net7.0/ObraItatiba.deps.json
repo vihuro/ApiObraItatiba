@@ -13,6 +13,7 @@
           "BCrypt.Net-Core": "1.6.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.4",
           "Microsoft.AspNetCore.OpenApi": "7.0.0",
+          "Microsoft.CSharp": "4.7.0",
           "Microsoft.EntityFrameworkCore": "7.0.4",
           "Microsoft.EntityFrameworkCore.Design": "7.0.4",
           "Microsoft.EntityFrameworkCore.Proxies": "7.0.4",

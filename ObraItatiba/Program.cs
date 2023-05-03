@@ -5,11 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ObraItatiba.Context;
 using ObraItatiba.Dto.Time;
+using ObraItatiba.Interface.Conhecimento.Obra;
 using ObraItatiba.Interface.Login;
 using ObraItatiba.Interface.NotasRadar;
 using ObraItatiba.Interface.NotasTHR;
 using ObraItatiba.Interface.Time;
 using ObraItatiba.Service.Claims;
+using ObraItatiba.Service.Conhecimento.Obra;
 using ObraItatiba.Service.JWT;
 using ObraItatiba.Service.Mapping.ClaimForUser;
 using ObraItatiba.Service.Mapping.ClaimType;
@@ -45,6 +47,7 @@ builder.Services.AddScoped<INotasRadarService, NotasFiscaisTxt>();
 builder.Services.AddScoped<INotasThrService, NotasThrService>();
 builder.Services.AddScoped<IparcelasService, ParcelasService>();
 builder.Services.AddScoped<IProdutoServicoService, ProdutoServicoService>();
+builder.Services.AddScoped<IConhecimentoObraService, ConhecimentoObraRadarService>();
 
 
 builder.Services.AddAutoMapper(x =>

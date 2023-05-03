@@ -26,7 +26,7 @@ namespace ObraItatiba.Service.NotasFiscais
                     string linha = leitor.ReadLine();
                     string[] valores = linha.Split('|');
 
-                    var verificao = list.Where(x => x.NumeroNota == valores[0] &&
+                    var verificao = list.Where(x => x.NumeroNota == valores[0].Replace("\"","") &&
                                     x.Cnpj == valores[3].Replace("\"", "").Trim()).FirstOrDefault();
                     if (verificao == null)
                     {
