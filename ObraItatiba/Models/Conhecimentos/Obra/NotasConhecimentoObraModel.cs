@@ -11,6 +11,7 @@ namespace ObraItatiba.Models.Conhecimentos.Obra
         public string? Fornecedor { get; set; }
         public int UsuarioCadastroId { get; set; }
         public int ConhecimentoObraId { get; set; }
+        public DateTime DataEmissao { get; set; }
         public virtual ConhecimentoObraModel ConhecimentoObra { get; set; }
         public virtual UsuarioModel UsuarioCadastro { get; set; }
         public DateTime DataHoraCadastro { get; set; }

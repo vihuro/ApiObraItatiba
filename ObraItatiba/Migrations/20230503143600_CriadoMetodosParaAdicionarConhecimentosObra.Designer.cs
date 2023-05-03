@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ObraItatiba.Context;
@@ -11,9 +12,11 @@ using ObraItatiba.Context;
 namespace ObraItatiba.Migrations
 {
     [DbContext(typeof(ContextBase))]
-    partial class ContextBaseModelSnapshot : ModelSnapshot
+    [Migration("20230503143600_CriadoMetodosParaAdicionarConhecimentosObra")]
+    partial class CriadoMetodosParaAdicionarConhecimentosObra
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,9 +143,6 @@ namespace ObraItatiba.Migrations
                     b.Property<int>("NumeroDocumento")
                         .HasColumnType("integer");
 
-                    b.Property<int>("TimeId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Transpotadora")
                         .IsRequired()
                         .HasColumnType("text");
@@ -157,8 +157,6 @@ namespace ObraItatiba.Migrations
                         .HasColumnType("numeric");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TimeId");
 
                     b.HasIndex("UsuarioAlteracaoId");
 
@@ -538,12 +536,6 @@ namespace ObraItatiba.Migrations
 
             modelBuilder.Entity("ObraItatiba.Models.Conhecimentos.Obra.ConhecimentoObraModel", b =>
                 {
-                    b.HasOne("ObraItatiba.Models.Fornecedores.TimesModel", "Time")
-                        .WithMany()
-                        .HasForeignKey("TimeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ObraItatiba.Models.Usuarios.UsuarioModel", "UsuarioAlteracao")
                         .WithMany()
                         .HasForeignKey("UsuarioAlteracaoId")
@@ -555,8 +547,6 @@ namespace ObraItatiba.Migrations
                         .HasForeignKey("UsuarioCadastroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Time");
 
                     b.Navigation("UsuarioAlteracao");
 

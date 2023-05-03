@@ -1,4 +1,6 @@
-﻿using ObraItatiba.Dto.Conhecimento.Obra;
+﻿using ObraItatiba.Dto.Conhecimento.Obra.Conhecimento;
+using ObraItatiba.Dto.Conhecimento.Obra.Notas;
+using ObraItatiba.Dto.Conhecimento.Obra.Parcelas;
 using ObraItatiba.Interface.Conhecimento.Obra;
 using System.Text;
 
@@ -6,6 +8,11 @@ namespace ObraItatiba.Service.Conhecimento.Obra
 {
     public class ConhecimentoObraRadarService : IConhecimentoObraService
     {
+        private readonly IConhecimentoTHRService _conhecimentoObraService;
+        public ConhecimentoObraRadarService(IConhecimentoTHRService _conhecimentoService)
+        {
+            _conhecimentoObraService = _conhecimentoService;
+        }
         public List<ConhecimentoObraDto> LerArquivoTXT()
         {
             var list = new List<ConhecimentoObraDto>();
@@ -27,7 +34,8 @@ namespace ObraItatiba.Service.Conhecimento.Obra
                             DataEmissao = Convert.ToDateTime(valor[1].Replace("\"", "")),
                             NumeroDocumento = Convert.ToInt32(valor[2].Replace("\"", "")),
                             CodigoTransportadora = valor[3].Replace("\"", ""),
-                            ValorFrete = valor[5].Replace("\"", "")
+                            Transportadora = valor[4].Replace("\"", ""),
+                            ValorFrete = decimal.Parse(valor[5].Replace("\"", "")).ToString("###,###.##"),
                         };
                         if (valor[7].Replace("\"", "") != null)
                         {
@@ -36,7 +44,8 @@ namespace ObraItatiba.Service.Conhecimento.Obra
                                 new ParcelasConhecimentoDto()
                                 {
                                     Vencimento = Convert.ToDateTime(valor[8].Replace("\"","")).ToUniversalTime(),
-                                    NumeroParcela = valor[7].Replace("\"","")
+                                    NumeroParcela = valor[7].Replace("\"",""),
+                                    ValorParcela = decimal.Parse(valor[9].Replace("\"", "")).ToString("###,###.##"),
                                 }
                             };
                         }
@@ -45,10 +54,15 @@ namespace ObraItatiba.Service.Conhecimento.Obra
                             dto.Notas = new List<NotasConhecimentoDto> { new NotasConhecimentoDto()
                             {
                                 NumeroNota = valor[11].Replace("\"",""),
-                                DataEmissao = valor[12].Replace("\"",""),
-                                Fornecedor = valor[13].Replace("\"","")
+
+                                Fornecedor = valor[13].Replace("\"",""),
 
                             } };
+                            if (valor[12].Replace("\"", "") != "00/00/00" &&
+                                valor[12].Replace("\"", "") != "")
+                            {
+                                dto.Notas[0].DataEmissao = Convert.ToDateTime(valor[12].Replace("\"", "")).ToUniversalTime();
+                            }
 
                         }
                         list.Add(dto);
@@ -63,7 +77,9 @@ namespace ObraItatiba.Service.Conhecimento.Obra
                                 new ParcelasConhecimentoDto()
                                 {
                                     NumeroParcela = valor[7].Replace("\"",""),
-                                    Vencimento = Convert.ToDateTime(valor[8].Replace("\"",""))
+                                    Vencimento = Convert.ToDateTime(valor[8].Replace("\"","")),
+                                    ValorParcela = decimal.Parse(valor[9].Replace("\"", "")).ToString("###,###.##"),
+
                                 }
                             };
                         }
@@ -74,8 +90,14 @@ namespace ObraItatiba.Service.Conhecimento.Obra
                                 verificao.Parcelas.Add(new ParcelasConhecimentoDto()
                                 {
                                     NumeroParcela = valor[7].Replace("\"", ""),
-                                    Vencimento = Convert.ToDateTime(valor[8].Replace("\"", ""))
+                                    Vencimento = Convert.ToDateTime(valor[8].Replace("\"", "")),
+                                    ValorParcela = decimal.Parse(valor[9].Replace("\"", "")).ToString("###,###.##"),
                                 });
+                                if (valor[12].Replace("\"", "") != "00/00/00" &&
+                                    valor[12].Replace("\"", "") != "")
+                                {
+                                    verificao.Notas[0].DataEmissao = Convert.ToDateTime(valor[12].Replace("\"", "")).ToUniversalTime();
+                                }
                             };
                         }
                         if (verificao.Notas == null)
@@ -85,8 +107,7 @@ namespace ObraItatiba.Service.Conhecimento.Obra
                                 new NotasConhecimentoDto()
                                 {
                                 NumeroNota = valor[11].Replace("\"",""),
-                                DataEmissao = valor[12].Replace("\"",""),
-                                Fornecedor = valor[13].Replace("\"","")
+                                Fornecedor = valor[13].Replace("\"",""),
                                 }
                             };
                         }
@@ -97,9 +118,13 @@ namespace ObraItatiba.Service.Conhecimento.Obra
                                 verificao.Notas.Add(new NotasConhecimentoDto
                                 {
                                     NumeroNota = valor[11].Replace("\"", ""),
-                                    DataEmissao = valor[12].Replace("\"", ""),
-                                    Fornecedor = valor[13].Replace("\"", "")
+                                    Fornecedor = valor[13].Replace("\"", ""),
                                 });
+                                if (valor[12].Replace("\"","") != "00/00/00" &&
+                                    valor[12].Replace("\"", "") != "")
+                                {
+                                    verificao.Notas[0].DataEmissao = Convert.ToDateTime(valor[12].Replace("\"", "")).ToUniversalTime();
+                                }
                             }
                         }
                     }
@@ -107,6 +132,33 @@ namespace ObraItatiba.Service.Conhecimento.Obra
             }
 
             return list;
+        }
+
+        public List<ConhecimentoObraDto> GetListNotSaved()
+        {
+            var objRadar = LerArquivoTXT();
+            var objTHR = _conhecimentoObraService.GetList();
+            var obj = new List<ConhecimentoObraDto>();
+            foreach(var item in objRadar)
+            {
+                var exists = objTHR.Any(x => x.NumeroDocumento == item.NumeroDocumento.ToString());
+                if (!exists)
+                {
+                    obj.Add(new ConhecimentoObraDto()
+                    {
+                        CodigoTransportadora = item.CodigoTransportadora,
+                        DataEmissao = item.DataEmissao,
+                        DataEntrada = item.DataEntrada,
+                        Notas = item.Notas,
+                        NumeroDocumento = item.NumeroDocumento,
+                        Parcelas = item.Parcelas,
+                        Transportadora = item.Transportadora,
+                        ValorFrete = item.ValorFrete
+                    });
+                }
+
+            }
+            return obj;
         }
     }
 }

@@ -50,6 +50,7 @@ namespace ObraItatiba.Service.NotasFiscais
                                 Vencimento = Convert.ToDateTime(valores[9].Replace("\"", "")).ToUniversalTime(),
                                 }
                             };
+
                         }
                         if ( valores[6].Replace("\"", "") != string.Empty)
                         {

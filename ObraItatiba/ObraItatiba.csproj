@@ -7,9 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\ConhecimentoTransporte\**" />
     <Compile Remove="Models\Time\**" />
+    <Content Remove="Models\ConhecimentoTransporte\**" />
     <Content Remove="Models\Time\**" />
+    <EmbeddedResource Remove="Models\ConhecimentoTransporte\**" />
     <EmbeddedResource Remove="Models\Time\**" />
+    <None Remove="Models\ConhecimentoTransporte\**" />
     <None Remove="Models\Time\**" />
   </ItemGroup>
 
@@ -35,10 +39,6 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.27.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\ConhecimentoTransporte\ObraItatiba\" />
   </ItemGroup>
 
 </Project>

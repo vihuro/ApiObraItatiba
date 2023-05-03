@@ -15,6 +15,7 @@ using ObraItatiba.Service.Conhecimento.Obra;
 using ObraItatiba.Service.JWT;
 using ObraItatiba.Service.Mapping.ClaimForUser;
 using ObraItatiba.Service.Mapping.ClaimType;
+using ObraItatiba.Service.Mapping.Conhecimento.Obra;
 using ObraItatiba.Service.Mapping.ListClaimsForUser;
 using ObraItatiba.Service.Mapping.Notas;
 using ObraItatiba.Service.Mapping.Times;
@@ -48,6 +49,9 @@ builder.Services.AddScoped<INotasThrService, NotasThrService>();
 builder.Services.AddScoped<IparcelasService, ParcelasService>();
 builder.Services.AddScoped<IProdutoServicoService, ProdutoServicoService>();
 builder.Services.AddScoped<IConhecimentoObraService, ConhecimentoObraRadarService>();
+builder.Services.AddScoped<IParcelaConhecimentoService, ParcelasConhecimentoObraService>();
+builder.Services.AddScoped<INotasConhecimentoService, NotasConhecimentoObraService>();
+builder.Services.AddScoped<IConhecimentoTHRService, ConhecimentoObraTHRService>();
 
 
 builder.Services.AddAutoMapper(x =>
@@ -61,6 +65,10 @@ builder.Services.AddAutoMapper(x =>
     x.AddProfile(typeof(RetornoNotaThrMapping));
     x.AddProfile(typeof(NumeroDocumentoMapping));
     x.AddProfile(typeof(ProdutoResumidoMapping));
+    x.AddProfile(typeof(ParcelaConhecimendtoDtoMapping));
+    x.AddProfile(typeof(NotasConhecimentoDtoMapping));
+    x.AddProfile(typeof(ConhecimentoTHRRetornoDtoMapping));
+
 });
 
 //JWT
