@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vitor\\Desktop\\.NET_API\\ApiObraItatiba\\obraitatiba\\ObraItatiba.csproj": {}
+    "C:\\Users\\vitor\\Desktop\\.NET_API\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vitor\\Desktop\\.NET_API\\ApiObraItatiba\\obraitatiba\\ObraItatiba.csproj": {
+    "C:\\Users\\vitor\\Desktop\\.NET_API\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vitor\\Desktop\\.NET_API\\ApiObraItatiba\\obraitatiba\\ObraItatiba.csproj",
+        "projectUniqueName": "C:\\Users\\vitor\\Desktop\\.NET_API\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj",
         "projectName": "ObraItatiba",
-        "projectPath": "C:\\Users\\vitor\\Desktop\\.NET_API\\ApiObraItatiba\\obraitatiba\\ObraItatiba.csproj",
+        "projectPath": "C:\\Users\\vitor\\Desktop\\.NET_API\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj",
         "packagesPath": "C:\\Users\\vitor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vitor\\Desktop\\.NET_API\\ApiObraItatiba\\obraitatiba\\obj\\",
+        "outputPath": "C:\\Users\\vitor\\Desktop\\.NET_API\\ApiObraItatiba\\ObraItatiba\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
