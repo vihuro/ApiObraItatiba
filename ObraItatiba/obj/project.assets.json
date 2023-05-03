@@ -2140,7 +2140,6 @@
       "BCrypt.Net-Core >= 1.6.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.4",
       "Microsoft.AspNetCore.OpenApi >= 7.0.0",
-      "Microsoft.CSharp >= 4.7.0",
       "Microsoft.EntityFrameworkCore >= 7.0.4",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.4",
       "Microsoft.EntityFrameworkCore.Proxies >= 7.0.4",
@@ -2216,10 +2215,6 @@
             "target": "Package",
             "version": "[7.0.0, )"
           },
-          "Microsoft.CSharp": {
-            "target": "Package",
-            "version": "[4.7.0, )"
-          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[7.0.4, )"
@@ -2283,13 +2278,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema ao ler o arquivo de cache C:\\Users\\thr\\source\\repos\\ApiObraItatiba\\ObraItatiba\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

@@ -64,10 +64,6 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
-            "Microsoft.CSharp": {
-              "target": "Package",
-              "version": "[4.7.0, )"
-            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.4, )"

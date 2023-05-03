@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "PJq0njMjDf/BgFSzy6viEfTk6iHqP6k4H8bNA2eZqnmcJLs47NcFucuVDjZkGKLQ98q5AsZDMlcWl9ouNkdZCQ==",
+  "dgSpecHash": "QfzzjK6vyHoxAAUnrXs0S2ExONNbxEL1tqAD2WwvgnYqBy+oKlk7WyPuvzpEgGwt8uDVsf4qrQliySVhdNW5qw==",
   "success": true,
   "projectFilePath": "C:\\Users\\thr\\source\\repos\\ApiObraItatiba\\ObraItatiba\\ObraItatiba.csproj",
   "expectedPackageFiles": [
@@ -51,12 +51,5 @@
     "C:\\Users\\thr\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\thr\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema ao ler o arquivo de cache C:\\Users\\thr\\source\\repos\\ApiObraItatiba\\ObraItatiba\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
