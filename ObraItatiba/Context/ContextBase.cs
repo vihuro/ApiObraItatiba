@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ObraItatiba.Models.Claims;
+using ObraItatiba.Models.Conhecimentos.Obra;
 using ObraItatiba.Models.Fornecedores;
 using ObraItatiba.Models.Notas;
 using ObraItatiba.Models.Usuarios;
@@ -29,5 +30,8 @@ namespace ObraItatiba.Context
         public DbSet<ParcelasModel> Documentos { get; set; }
         public DbSet<ProdutoServicoModel> ProdutosServico { get; set; }
         public DbSet<TimesModel> Time { get; set; }
+        public DbSet<NotasConhecimentoObraModel> NotasConhecimentoObra { get; set; }
+        public DbSet<ConhecimentoObraModel> ConhecimentosObra { get; set; }
+        public DbSet<ParcelasConhecimentoObraModel> ParcelasConhecimentoObra { get; set; }
     }
 }
