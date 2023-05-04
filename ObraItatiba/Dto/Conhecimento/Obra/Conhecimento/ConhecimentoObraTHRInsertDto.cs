@@ -12,6 +12,7 @@ namespace ObraItatiba.Dto.Conhecimento.Obra.Conhecimento
         public string Transportadora { get; set; }
         public decimal ValorFrete { get; set; }
         public int UsuarioCadastroId { get; set; }
+        public string Autorizador { get; set; }
         public int TimeId { get; set; }
         public List<ParcelasConhecimentoDto>? Parcelas { get; set; }
         public List<NotasConhecimentoDto>? Notas { get; set; }

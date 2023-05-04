@@ -51,7 +51,8 @@ namespace ObraItatiba.Service.Conhecimento.Obra
                 DataHoraCadastro = DateTime.UtcNow,
                 UsuarioAlteracaoId = dto.UsuarioCadastroId,
                 DataHotaAlteracao = DateTime.UtcNow,
-                TimeId = dto.TimeId
+                TimeId = dto.TimeId,
+                Autorizador = dto.Autorizador
 
             };
             _context.ConhecimentosObra.Add(obj);

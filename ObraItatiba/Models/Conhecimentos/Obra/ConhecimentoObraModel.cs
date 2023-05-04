@@ -19,6 +19,7 @@ namespace ObraItatiba.Models.Conhecimentos.Obra
         public int UsuarioAlteracaoId { get; set; }
         public virtual UsuarioModel UsuarioAlteracao { get; set; }
         public DateTime DataHotaAlteracao { get; set; }
+        public string Autorizador { get; set; }
         public int TimeId { get; set; }
         public virtual TimesModel Time { get; set; }
         public virtual List<NotasConhecimentoObraModel> Notas { get; set; }

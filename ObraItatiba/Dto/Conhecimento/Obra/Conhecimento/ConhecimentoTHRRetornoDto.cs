@@ -17,6 +17,7 @@ namespace ObraItatiba.Dto.Conhecimento.Obra.Conhecimento
         public UsuarioResumidoDto UsuarioAlteracao { get; set; }
         public DateTime DataHoraAlteracao { get; set; }
         public string Time { get; set; }
+        public string Autorizador { get; set; }
         public List<ParcelasConhecimentoDto> Parcelas { get; set; }
         public List<NotasConhecimentoDto> Notas { get; set; }
 

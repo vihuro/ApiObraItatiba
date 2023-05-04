@@ -24,6 +24,7 @@ namespace ObraItatiba.Service.Mapping.Conhecimento.Obra
                 .ForPath(x => x.UsuarioAlteracao.Nome, map => map.MapFrom(src => src.UsuarioAlteracao.Nome))
                 .ForPath(x => x.UsuarioAlteracao.Apelido, map => map.MapFrom(src => src.UsuarioAlteracao.Apelido))
                 .ForMember(x => x.DataHoraAlteracao, map => map.MapFrom(src => src.DataHotaAlteracao))
+                .ForMember(x => x.Autorizador, map => map.MapFrom(src => src.Autorizador))
                 .ForMember(x => x.Notas, map => map.MapFrom(src => src.Notas.Select(n => new NotasConhecimentoDto
                 {
                     DataEmissao = n.DataEmissao,
