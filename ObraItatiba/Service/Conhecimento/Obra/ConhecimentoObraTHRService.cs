@@ -28,7 +28,7 @@ namespace ObraItatiba.Service.Conhecimento.Obra
         }
         public ConhecimentoTHRRetornoDto Insert(ConhecimentoObraTHRInsertDto dto)
         {
-            if (string.IsNullOrEmpty(dto.CodigoTransportador) ||
+            if (string.IsNullOrEmpty(dto.CodigoTransportadora) ||
                 string.IsNullOrEmpty(dto.NumeroDocumento.ToString()) ||
                 string.IsNullOrEmpty(dto.DataEmissao.ToString()) ||
                 string.IsNullOrEmpty(dto.ValorFrete.ToString()) ||
@@ -44,15 +44,16 @@ namespace ObraItatiba.Service.Conhecimento.Obra
             {
                 NumeroDocumento = dto.NumeroDocumento,
                 Transpotadora = dto.Transportadora,
-                CodigoTransportadora = dto.CodigoTransportador,
+                CodigoTransportadora = dto.CodigoTransportadora,
                 DataEmissao = dto.DataEmissao.ToUniversalTime(),
+                DataEntrada = dto.DataEntrada.ToUniversalTime(),
                 ValorFrete = dto.ValorFrete,
                 UsuarioCadastroId = dto.UsuarioCadastroId,
                 DataHoraCadastro = DateTime.UtcNow,
                 UsuarioAlteracaoId = dto.UsuarioCadastroId,
                 DataHotaAlteracao = DateTime.UtcNow,
                 TimeId = dto.TimeId,
-                Autorizador = dto.Autorizador
+                Autorizador = dto.Autorizador,
 
             };
             _context.ConhecimentosObra.Add(obj);
@@ -114,7 +115,7 @@ namespace ObraItatiba.Service.Conhecimento.Obra
                 .Include(u => u.UsuarioCadastro)
                 .Include(u => u.UsuarioAlteracao)
                 .Include(t => t.Time)
-                .Where(x => x.NumeroDocumento == numeroDocumento).First();
+                .Where(x => x.NumeroDocumento == numeroDocumento).FirstOrDefault();
             return _mapper.Map<ConhecimentoObraModel, ConhecimentoTHRRetornoDto>(obj);
         }
         public List<ConhecimentoTHRRetornoDto> GetList()

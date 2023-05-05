@@ -9,6 +9,7 @@ namespace ObraItatiba.Models.Conhecimentos.Obra
     {
         public int Id { get; set; }
         public int NumeroDocumento { get; set; }
+        public DateTime DataEntrada { get; set; }
         public DateTime DataEmissao { get; set; }
         public string CodigoTransportadora { get; set; }
         public string Transpotadora { get; set; }

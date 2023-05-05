@@ -8,7 +8,7 @@ namespace ObraItatiba.Dto.Conhecimento.Obra.Conhecimento
         public int NumeroDocumento { get; set; }
         public DateTime DataEntrada { get; set; }
         public DateTime DataEmissao { get; set; }
-        public string CodigoTransportador { get; set; }
+        public string CodigoTransportadora { get; set; }
         public string Transportadora { get; set; }
         public decimal ValorFrete { get; set; }
         public int UsuarioCadastroId { get; set; }

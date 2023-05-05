@@ -14,6 +14,8 @@ namespace ObraItatiba.Service.Mapping.Conhecimento.Obra
                 .ForMember(x => x.NumeroDocumento, map => map.MapFrom(src => src.NumeroDocumento))
                 .ForMember(x => x.ValorFrete, map => map.MapFrom(src => src.ValorFrete.ToString("###,###.##")))
                 .ForMember(x => x.CodigoTransportador, map => map.MapFrom(src => src.CodigoTransportadora))
+                .ForMember(x => x.DataEmissao, map => map.MapFrom(src => src.DataEmissao))
+                .ForMember(x => x.DataEntrada, map => map.MapFrom(src => src.DataEntrada))
                 .ForMember(x => x.Transportador, map => map.MapFrom(src => src.Transpotadora))
                 .ForMember(x => x.Time, map => map.MapFrom(src => src.Time.Time))
                 .ForPath(x => x.UsuarioCadastro.UsuarioId, map => map.MapFrom(src => src.UsuarioCadastro.Id))
@@ -34,7 +36,7 @@ namespace ObraItatiba.Service.Mapping.Conhecimento.Obra
                 .ForMember(x => x.Parcelas, map => map.MapFrom(src => src.Parcelas.Select(p => new ParcelasConhecimentoDto
                 {
                     NumeroParcela = p.NumeroParcela,
-                    ValorParcela =  p.ValorParcela.ToString("###,###.##"),
+                    ValorParcela = p.ValorParcela.ToString("###,###.##"),
                     Vencimento = p.DataVencimento
                 })));
         }

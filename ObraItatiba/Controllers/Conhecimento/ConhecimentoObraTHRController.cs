@@ -26,6 +26,19 @@ namespace ObraItatiba.Controllers.Conhecimento
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet]
+        public ActionResult<List<ConhecimentoTHRRetornoDto>> GetAll()
+        {
+            try
+            {
+                return Ok(_service.GetList());
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpGet("{numeroDocumento}")]
         public ActionResult<ConhecimentoTHRRetornoDto> GetByDocumento(int numeroDocumento)
         {
