@@ -11,7 +11,7 @@ namespace ObraItatiba.Controllers.Conhecimento
         public ConhecimentoObraRadarController(IConhecimentoObraService _service) 
         { this._service = _service; }
         [HttpGet]
-        public ActionResult<List<ConhecimentoObraDto>> BuscarConhecimentos()
+        public async Task<ActionResult<List<ConhecimentoObraDto>>> BuscarConhecimentos()
         {
             try
             {
@@ -24,7 +24,7 @@ namespace ObraItatiba.Controllers.Conhecimento
             }
         }
         [HttpGet("notsaved")]
-        public ActionResult<List<ConhecimentoObraDto>> GetConhecimentoNotSaved()
+        public async Task< ActionResult<List<ConhecimentoObraDto>>> GetConhecimentoNotSaved()
         {
             try
             {

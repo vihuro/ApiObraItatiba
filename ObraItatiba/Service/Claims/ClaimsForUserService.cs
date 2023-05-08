@@ -20,7 +20,7 @@ namespace ObraItatiba.Service.Claims
 
         public ClaimsForUserService(ContextBase context,
                                    IMapper mapper,
-                                   IClaimTypeService claimsTypeService) 
+                                   IClaimTypeService claimsTypeService)
         {
 
             this._context = context;
@@ -30,14 +30,14 @@ namespace ObraItatiba.Service.Claims
 
         public ClaimForUserRetorno InsertClaim(ClaimsCadastroUsuarioDto dto)
         {
-            if(string.IsNullOrEmpty(dto.UsuarioId.ToString()) ||
+            if (string.IsNullOrEmpty(dto.UsuarioId.ToString()) ||
                 string.IsNullOrEmpty(dto.ClaimId.ToString()))
             {
                 throw new ExceptionService("Campo(s) obrigatório(s) vazio(s)!");
             }
 
             var claim = _claimsTypeService.SelectForId(dto.ClaimId);
-            if(claim == null)
+            if (claim == null)
             {
                 throw new ExceptionService("Regra não econtrada!");
             }
@@ -121,8 +121,23 @@ namespace ObraItatiba.Service.Claims
                 })
                 .ToList();
 
-            
+
             return result;
+        }
+        public List<ClaimsForUserDto> ClaimsCadastroUsuarioDto(ClaimsCadastroUsuarioDto dto)
+        {
+            var obj = _context.ClaimsForUser.Where(x =>
+            x.Id == dto.ClaimId &&
+            x.UsuarioId == dto.UsuarioId)
+                .FirstOrDefault();
+            if (obj == null)
+            {
+                throw new ExceptionService("Regra não econtrada!") { HResult = 404 };
+            }
+            _context.ClaimsForUser.Remove(obj);
+            _context.SaveChanges();
+            return ListClaimsForUser(dto.UsuarioId);
+
         }
         private ClaimsForUserDto Insert(ClaimsCadastroUsuarioDto dto)
         {

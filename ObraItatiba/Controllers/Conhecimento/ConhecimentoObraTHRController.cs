@@ -14,7 +14,7 @@ namespace ObraItatiba.Controllers.Conhecimento
             _service = service;
         }
         [HttpPost]
-        public ActionResult<ConhecimentoTHRRetornoDto> Insert([FromBody] ConhecimentoObraTHRInsertDto dto)
+        public async Task<ActionResult<ConhecimentoTHRRetornoDto>> Insert([FromBody] ConhecimentoObraTHRInsertDto dto)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace ObraItatiba.Controllers.Conhecimento
             }
         }
         [HttpGet]
-        public ActionResult<List<ConhecimentoTHRRetornoDto>> GetAll()
+        public async Task<ActionResult<List<ConhecimentoTHRRetornoDto>>> GetAll()
         {
             try
             {
@@ -40,7 +40,7 @@ namespace ObraItatiba.Controllers.Conhecimento
             }
         }
         [HttpGet("{numeroDocumento}")]
-        public ActionResult<ConhecimentoTHRRetornoDto> GetByDocumento(int numeroDocumento)
+        public async Task<ActionResult<ConhecimentoTHRRetornoDto>> GetByDocumento(int numeroDocumento)
         {
             try
             {

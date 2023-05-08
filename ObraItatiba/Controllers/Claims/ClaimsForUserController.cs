@@ -56,5 +56,19 @@ namespace ObraItatiba.Controllers.Claims
                 return BadRequest(ex.Message);
             }
         }
+        [HttpDelete("delete")]
+        [ClaimsAuthorizeAttribute("Ti", "Full,regra2,regra3")]
+        public async Task<ActionResult> DeleteClaimForUser(ClaimsCadastroUsuarioDto dto)
+        {
+            try
+            {
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
+        }
     }
 }
