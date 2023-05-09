@@ -124,10 +124,10 @@ namespace ObraItatiba.Service.Claims
 
             return result;
         }
-        public List<ClaimsForUserDto> ClaimsCadastroUsuarioDto(ClaimsCadastroUsuarioDto dto)
+        public List<ClaimsForUserDto> DeleteById(ClaimsCadastroUsuarioDto dto)
         {
             var obj = _context.ClaimsForUser.Where(x =>
-            x.Id == dto.ClaimId &&
+            x.ClaimId == dto.ClaimId &&
             x.UsuarioId == dto.UsuarioId)
                 .FirstOrDefault();
             if (obj == null)

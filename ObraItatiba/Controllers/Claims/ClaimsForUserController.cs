@@ -57,12 +57,12 @@ namespace ObraItatiba.Controllers.Claims
             }
         }
         [HttpDelete("delete")]
-        [ClaimsAuthorizeAttribute("Ti", "Full,regra2,regra3")]
-        public async Task<ActionResult> DeleteClaimForUser(ClaimsCadastroUsuarioDto dto)
+        //[ClaimsAuthorizeAttribute("Ti", "Full,regra2,regra3")]
+        public async Task<ActionResult> DeleteClaimForUser([FromBody]ClaimsCadastroUsuarioDto dto)
         {
             try
             {
-                return Ok();
+                return Ok(_service.DeleteById(dto));
             }
             catch (Exception ex)
             {
