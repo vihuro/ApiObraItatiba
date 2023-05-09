@@ -227,4 +227,3 @@ C:\Users\vitor\Desktop\.NET_API\ApiObraItatiba\obraitatiba\obj\Debug\net7.0\refi
 C:\Users\vitor\Desktop\.NET_API\ApiObraItatiba\obraitatiba\obj\Debug\net7.0\ObraItatiba.pdb
 C:\Users\vitor\Desktop\.NET_API\ApiObraItatiba\obraitatiba\obj\Debug\net7.0\ObraItatiba.genruntimeconfig.cache
 C:\Users\vitor\Desktop\.NET_API\ApiObraItatiba\obraitatiba\obj\Debug\net7.0\ref\ObraItatiba.dll
-C:\Users\thr\source\repos\ApiObraItatiba\ObraItatiba\bin\Debug\net7.0\web.config

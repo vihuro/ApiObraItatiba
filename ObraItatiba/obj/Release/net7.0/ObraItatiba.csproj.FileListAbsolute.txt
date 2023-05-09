@@ -113,7 +113,6 @@ C:\Users\thr\source\repos\ApiObraItatiba\ObraItatiba\obj\Release\net7.0\ObraItat
 C:\Users\thr\source\repos\ApiObraItatiba\ObraItatiba\obj\Release\net7.0\ObraItatiba.genruntimeconfig.cache
 C:\Users\thr\source\repos\ApiObraItatiba\ObraItatiba\obj\Release\net7.0\ref\ObraItatiba.dll
 C:\Users\thr\Desktop\API\ApiObraItatiba\ObraItatiba\bin\Release\net7.0\web.config
-C:\Users\thr\source\repos\ApiObraItatiba\ObraItatiba\bin\Release\net7.0\web.config
 C:\Users\vitor\Desktop\.NET_API\ApiObraItatiba\ObraItatiba\bin\Release\net7.0\appsettings.Development.json
 C:\Users\vitor\Desktop\.NET_API\ApiObraItatiba\ObraItatiba\bin\Release\net7.0\web.config
 C:\Users\vitor\Desktop\.NET_API\ApiObraItatiba\ObraItatiba\bin\Release\net7.0\appsettings.json
