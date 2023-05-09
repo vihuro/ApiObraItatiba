@@ -15,7 +15,7 @@ namespace ObraItatiba.Controllers.Claims
             this._service = service;
         }
         [HttpPut]
-        //[ClaimsAuthorizeAttribute("Ti", "Full,regra2,regra3")]
+        [ClaimsAuthorizeAttribute("Ti", "Full,regra2,regra3")]
         public async Task<ActionResult<ClaimForUserRetorno>> Insert([FromBody]ClaimsCadastroUsuarioDto dto)
         {
             try
@@ -57,7 +57,7 @@ namespace ObraItatiba.Controllers.Claims
             }
         }
         [HttpDelete("delete")]
-        //[ClaimsAuthorizeAttribute("Ti", "Full,regra2,regra3")]
+        [ClaimsAuthorizeAttribute("Ti", "Full,regra2,regra3")]
         public async Task<ActionResult> DeleteClaimForUser([FromBody]ClaimsCadastroUsuarioDto dto)
         {
             try
@@ -66,7 +66,10 @@ namespace ObraItatiba.Controllers.Claims
             }
             catch (Exception ex)
             {
-
+                if(ex.HResult == 404)
+                {
+                    return NotFound(ex.Message);
+                }
                 return BadRequest(ex);
             }
         }
